@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{%load staticfiles%}
+{% block body %}
+<div id="logincon" style="margin-top:200px">
+    <div class="logincon_main">
+        <div class="register_box" style="height:1200px;">
+            <div class="tabForm fl" style="height:1200px;width:970px">
+                <div class="wrapform" style="margin-top:10px;height:1200px;width:970px">
+                    <div class="wrapformbox" style="width:970px">
+                        <div class="form_box" style="width:970px">
+                            {% for i in page.object_list %}
+                            <table>
+                                <tr>
+                                    <td style="width:50px;font-size:25px">{{ forloop.counter }}</td>
+                                    <td style="width:150px;"><img src="/static/{{ i.image }}" alt="" style="width:100px;height:100px;"></td>
+                                    <td style="width:300px;font-size:22px">{{i.name}}</td>
+                                    <td>
+                                        <a class="btn btn-bg btn-info"
+                                           href="/users/book_update/{{i.id}}/">修改商品</a>
+                                        <a class="btn btn-bg btn-danger" onclick="return window.confirm('您确定要删除该商品吗？')"
+                                           href="/users/book_delete/{{i.id}}/">删除商品</a>
+                                    </td>
+                                </tr>
+                                <br>
+                                <br>
+                                <br>
+                            </table>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% if page.object_list %}
+<ul class="pagination" style="position:relative;left:840px">
+    {% if page.has_previous %}
+    <li>
+        <a href="/users/book_list/?pageNow={{ page.previous_page_number }}">上一页</a></li>
+    {% endif %}
+
+    {% if num_pages > 1 %}
+    {% for pindex in pages %}
+    {% if pindex == page.number %}
+    <li class="active"><a href="/users/book_list/?pageNow={{ pindex }}">{{ pindex }}</a></li>
+    {% else %}
+    <li><a href="/users/book_list/?pageNow={{ pindex }}">{{ pindex }}</a></li>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% if page.has_next %}
+    <li><a href="/users/book_list/?pageNow={{ page.next_page_number }}">下一页></a></li>
+    {% endif %}
+</ul>
+{% endif %}
+{% endblock %}

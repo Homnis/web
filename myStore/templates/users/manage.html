@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{%load staticfiles%}
+{% block body %}
+<div id="logincon" style="margin-top:200px">
+    <div class="logincon_main">
+        <div class="register_box" style="height:1200px;">
+            <div class="tabForm fl" style="height:1200px;width:800px">
+                <div class="wrapform" style="margin-top:10px;height:1200px;width:800px">
+                    <div class="wrapformbox">
+                        <div class="form_box">
+                            <form method="post" action="{% url 'users:manage' %}" class="formbox2 emailForm"
+                                  enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group" style="margin-left:-20px">
+                                    <label for="photoCover" class="col-sm-2 control-label">头像</label>
+                                    <div class="col-sm-8">
+                                        <input id="photoCover" class="form-control" type="text" style="height:30px;">
+                                        <input id="file" type="file" style="display:none" name="avatar">
+                                        <a class="btn" onclick="$('input[id=file]').click();"
+                                           style="margin-left:220px;margin-top:-50px">Browse</a>
+                                    </div>
+                                    <script type="text/javascript">
+                                        $('input[id=file]').change(function() {
+                                        $('#photoCover').val($(this).val());
+                                        });
+
+
+                                    </script>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="newImg" style="margin-left:-300px;margin-top:60px">上传图片</label>
+                                    <img id="newImg" src="" alt="pic" title="自定义背景"
+                                         style="margin-left:80px;width:200px;height:200px"/>
+                                    <script>
+                                        $('#file').on('change',function(){
+                                            var filePath = $(this).val(),         //获取到input的value，里面是文件的路径
+                                                fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+                                                src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+                                            // 检查是否是图片
+                                            if( !fileFormat.match(/.png|.jpg|.gif|.jpeg/) ) {
+                                                error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg/gif');
+                                                return;
+                                            }
+                                            $('#newImg').attr('src',src);
+                                        });
+
+
+                                    </script>
+                                </div>
+                                <div class="form_textbox form_sp" style="width:600px">
+                                    <select name="type_id">
+                                        <option value="1">culture</option>
+                                        <option value="2">tech</option>
+                                        <option value="3">life</option>
+                                        <option value="4">child</option>
+                                        <option value="5">novel</option>
+                                    </select>
+                                </div>
+                                <div class="form_textbox form_sp" style="width:600px">
+                                    <input required id="name" name="name" type="text"
+                                           placeholder="请输入商品名">
+                                </div>
+                                <span id="show2"></span>
+                                <div class="form_textbox form_sp" style="width:600px">
+                                    <input required id="desc" name="desc" type="text"
+                                           placeholder="请输入商品简介">
+                                </div>
+                                <span id="show3"></span>
+                                <div class="form_textbox form_sp" style="width:600px">
+                                    <input required id="price" name="price" type="number"
+                                           placeholder="请输入商品价格">
+                                </div>
+                                <span id="show4"></span>
+                                <div class="form_textbox form_sp" style="width:600px">
+                                    <input required id="stock" name="stock" type="number"
+                                           placeholder="请输入商品库存">
+                                </div>
+                                <span id="show5"></span>
+                                <div class="form_textbox form_sp" style="width:600px">
+                                    <select name="status">
+                                        <option value="1">online</option>
+                                        <option value="0">offline</option>
+                                    </select>
+                                </div>
+                                <span id="show6"></span>
+                                <div class="form_textbox form_sp" style="margin-top:20px">
+                                    <textarea class="form-control" name="detail" id="detail" rows="20"
+                                              placeholder="请输入您的文章内容"></textarea>
+                                    <script type="text/javascript"
+                                            src="{% static 'js/tinymce/tiny_mce.js' %}"></script>
+                                    <script type="text/javascript">
+                                        tinyMCE.init({
+                                            mode: "textareas",
+                                            theme: "advanced",
+                                            'width':600,
+                                            'height':400
+                                        });
+
+                                    </script>
+                                </div>
+                                {{msg}}
+                                <button id="button_2" type="submit" class="btnSubmit regBtn phoneReg" style="margin-top:370px;margin-left:120px;">
+                                    上&nbsp;传
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

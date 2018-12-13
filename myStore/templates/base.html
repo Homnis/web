@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+{# 首页 登录 注册 的父模板 #}
+{% load staticfiles %}
+{% block sty %}
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>{% block title %}首页{% endblock title %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'js/bootstrap-3.3.7-dist/css/bootstrap.css'%}">
+    <link rel="stylesheet" href="{% static 'select/bootstrap-select.min.css' %}">
+	<link rel="stylesheet" href="/static/goods/css/detail.css">
+
+    <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-3.3.7-dist/js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/slide.js' %}"></script>
+    <script src="{% static 'js/swiper.min.js' %}"></script>
+    <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/quick_links.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/parabola.js' %}"></script>
+    <script src="{% static 'select/bootstrap-select.min.js' %}"></script>
+    <script src="{% static 'select/i18n/defaults-zh_CN.min.js' %}"></script>
+
+
+</head>
+{% endblock %}
+<body>
+{# 网页顶部欢迎信息块 #}
+{% block nav %}
+<!-- top部分 -->
+<div id="top">
+    <div id="topcon">
+        <div class="topleft fl">
+            <i></i>
+            <span>关注</span>
+            <i></i>
+        </div>
+        <span class="hoverQrCode">
+                <img src="/static/goods/img/qrcode_06.jpg" alt="">
+            </span>
+        <div class="topright fr" style="width:780px;">
+            <ul class="topright_nav">
+                {% if not request.session.loginUser %}
+                <li class="fors"><a href="javascript:;">Hi,请 <a href="{% url 'users:login'%}" class="blue">登录</a><span
+                        class="fl">/</span><a href="{% url 'users:register'%}" class="blue">注册</a></a></li>
+                <li class="line"></li>
+                {% else %}
+                <li class="fors"><a href="#">Hi,{{request.session.loginUser.username}}</a></li>
+                <li class="line"></li>
+                <li class="fors"><a href="javascript:;"><a href="{% url 'users:logout' %}">安全退出</a></a></li>
+                {% endif %}
+                <li class="line"></li>
+                <li class="fors"><a href="{% url 'order:order_list' %}">我的订单</a></li>
+                <li class="line"></li>
+                <li class="fors droplist" style="width:90px">
+                    <ul class="fixedTopBar_dropList">
+                        <li style="width:80px"><a href="">用户中心 <i class="iconfont fr down">&#xe81c;</i></a></li>
+                        <li class="dropBox_hideList">
+                            <div style="text-align: center;">
+                                <a href="{% url 'users:psw_update' %}" rel="nofollow">密码修改</a></div>
+                            <div style="text-align: center;">
+                                <a href="{% url 'users:user_update' %}" rel="nofollow">信息修改</a></div>
+                            {% if request.session.loginUser.is_manager %}
+                            <div style="text-align: center;">
+                                <a href="{% url 'users:manage' %}" rel="nofollow">上传商品</a></div>
+                            <div style="text-align: center;">
+                                <a href="{% url 'users:book_list' %}" rel="nofollow">管理商品</a></div>
+                            {% endif %}
+                            <div style="text-align: center;">
+                                <a href="#" rel="nofollow">商品评论</a></div>
+                            <div>
+                                <a href="{% url 'users:addressList' %}" rel="nofollow">设置地址</a></div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="line"></li>
+                <li class="fors"><a href="javascript:;">在线客服</a></li>
+                <li class="line"></li>
+                <li class="fors"><a href="javascript:;">帮助</a></li>
+                <li class="line"></li>
+                <li class="fors"><a href="javascript:;" style="color:#C40000;">提意见</a></li>
+                <li class="line"></li>
+                <li class="fors"><a href="javascript:;" class="tel"><i class="iconfont">&#xe622;</i>400-722-1919</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!--导航部分结束-->
+{% block top %}
+<!-- 顶部大广告 -->
+<div id="focusPic" style="top:0;height:160px">
+    <a href="javascript:;"><img src="/static/img/indextop.jpg" alt="" style="top:0;width:1200px"></a>
+    <span class="focusPic_close fl">展开</span>
+</div>
+<!--顶部公告条-->
+<div id="noticeBar">
+    <i></i>
+    <a href="javascript:;" class="fl">狂欢节精选好货 专区满199减100元</a>
+    <span class="fr">关闭</span>
+</div>
+<!--悬浮条s-->
+<div id="fixedBox">
+    <div class="fixedBoxcon">
+        <div class="logofixed fl">
+            <img src="/static/goods/img/whiteLogo.png" alt="" height="40">
+        </div>
+        <div class="schBox">
+            <form method='get' action="/search/" target="_blank">
+                <input type="text" class="sch fl" name="q" placeholder="请输入搜索关键词">
+                <button type="submit" class="btn fl" style="padding:0">搜索</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!--顶部logo,搜索，购物车-->
+<div id="topBar">
+    <h1 class="logo fl"><a href="{% url 'books:index'%}"><img src="/static/goods/img/hd_logo.jpg" alt="购酒网" title="logo"></a></h1>
+    <div class="logogif fl"><a href="javascript:;"><img src="/static/goods/img/logogif.gif" alt=""></a></div>
+    <div class="topBar_searchBox fl">
+        <form method='get' action="/search/" target="_blank">
+            <input type="text" name="q" class="search fl" id="sea">
+            <button type="submit" class="searchBtn fl" style="">搜索</button>
+        </form>
+        <div class="topBar_tags fl" style="">
+            <a href="/search/?q=茅台">茅台</a>
+            <a href="/search/?q=郎酒">郎酒</a>
+            <a href="/search/?q=五粮液">五粮液</a>
+            <a href="/search/?q=剑南春">剑南春</a>
+            <a href="/search/?q=泸州老窖">泸州老窖</a>
+            <a href="/search/?q=洋河" class="border0">洋河</a>
+        </div>
+    </div>
+    <div class="topBar_cart fr">
+        <i class="iconfont gouwuche">&#xe63f;</i>
+        <a href="/shoppingCar/list/">我的购物车 ></a>
+        {% if not request.session.carts_count %}
+        <div class="topBar_count" id="head_cart_no">0</div>
+        {% else %}
+        <div class="topBar_count" id="sp_count">{{request.session.carts_count}}</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+{# 网页主体内容块 #}
+{% block body %}{% endblock body %}
+
+{# 获取用户购物车中商品的数目 #}
+{% block cart_count %}
+
+{% endblock %}
+{# 网页底部html元素块 #}
+{% block bottom %}
+<!-- 底部部分 -->
+<div id="footer" style="position:relative;top:300px;">
+    <div class="footermid">
+        <div class="footermidcon">
+            <div class="footermid_contop">
+                {# 短线上面的图 #}
+                <div class="footer_tel fl"></div>
+                <a href="javascript:;" class="footer_ser fl"><img src="/static/goods/img/onlineServ.png" alt=""></a>
+                <div class="fr qrCodeBox" style="">
+                    <p class="fl" style="color:black;width:200px;position:relative;top:-20px" >
+                        上海松江区茂盛路202弄18号<br>
+                        客服邮箱：kf@goujiuwang.com<br>
+                        <strong>扫描二维码，掌握一手资讯</strong><br>
+                    </p>
+                    <img src="/static/goods/img/weixin.jpg" alt="" class="fl footer_qrCode">
+                </div>
+            </div>
+            <div class="footerlink">
+                <dl>
+                    <dt>
+                        <a style="color:black" href="javascript:;">新手指南</a>
+                    </dt>
+                    <dd>
+                        <a href="javascript:;">用户协议</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">常见问题</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">网站购物流程</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">会员制度</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a style="color:black" href="javascript:;">如何付款</a>
+                    </dt>
+                    <dd>
+                        <a href="javascript:;">如何付款</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">发票制度说明</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">电子券说明</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">虚拟账户支付</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a style="color:black" href="javascript:;">配送方式</a>
+                    </dt>
+                    <dd>
+                        <a href="javascript:;">配送收费标准</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">配送时间</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">货到付款支持城市</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">实体加盟服务商</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a style="color:black" href="javascript:;">售后服务</a>
+                    </dt>
+                    <dd>
+                        <a href="javascript:;">如何办理退换货</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">如何退换货</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">联系客服</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a style="color:black" href="javascript:;">关于我们</a>
+                    </dt>
+                    <dd>
+                        <a href="javascript:;">了解购酒网</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">招兵买马</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">联系我们</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">隐私声明</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">友情链接</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a style="color:black" href="javascript:;">合作共赢</a>
+                    </dt>
+                    <dd>
+                        <a class="" href="javascript:;">品牌馆</a>
+                    </dd>
+                    <dd>
+                        <a class="" href="javascript:;">大客户采购 new</a>
+                    </dd>
+                    <dd>
+                        <a class="" href="javascript:;">网站推广 new</a>
+                    </dd>
+                    <dd>
+                        <a class="" href="javascript:;">供应商供货 new</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+</body>
+</html>

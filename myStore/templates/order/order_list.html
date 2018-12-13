@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% block sty %}
+<head>
+    <meta charset="UTF-8">
+    <title>购物车-购酒网</title>
+    <link rel="stylesheet" href="{% static 'car/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'car/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'car/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'car/css/carts.css' %}">
+    <link rel="icon" href="http://www.gjw.com/favicon.ico" type="image/ico">
+    <script src="{% static 'car/js/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'car/js/addshopcart_aj2.js' %}"></script>
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+</head>
+{% endblock %}
+
+
+{% block title %}所有订单{% endblock %}
+{% block body %}
+<div id="indexcon" style="width: 960px;">
+    <div class="cart_title" style="position:relative;left:-100px">
+        <h1 class="fl">
+            我的订单</h1>
+        <div id="shipping_area_top" class="fl">
+            <b>单笔订单满100元免运费（香港、澳门、台湾、钓鱼岛地区和拆分订单除外）</b></div>
+    </div>
+    <!-- begin -->
+
+    <div class="cartMain_hd">
+        <ul class="order_lists cartTop">
+            <li class="list_con" style="margin-left:-50px">订单编号</li>
+            <li class="list_info">订单商品</li>
+            <li class="list_price">单价</li>
+            <li class="list_amount">数量</li>
+            <li class="list_sum">总金额</li>
+        </ul>
+    </div>
+    <div class="cartBox">
+
+        <div  style="height:1180px;">
+            {% for order in page.object_list %}
+            <ul  style="clear:both;margin-bottom:60px">
+                <li style="position:relative;left:110px;top:10px;font-size:18px;clear:left;height:20px">{{ order.first.order_id }}</li>
+                {% for goods in order %}
+                <li style="clear:left;height:100px;">
+                    <div style="clear:both;position:relative;left:300px;height:100px;top:-10px;display:inline-block;">
+                        <h4 style="position:relative;left:-50px">{{ goods.goods.name }}</h4>
+                        <img src="/static/{{ goods.goods.image }}" alt="" style="position:relative;height:60px;top:-20px;" >
+                        <span style="position:relative;left:210px;top:-70px">{{ goods.goods.price }}</span>
+                        <span style="position:relative;left:320px;top:-70px">{{ goods.count }}</span>
+                        <span style="position:relative;left:425px;top:-70px">{{ goods.total_price }}</span>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <HR style="position:relative;left:75px;top:-70px;FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="80%" color=#B22222 SIZE=3>
+            {% empty %}
+            <ul> 购物车空空如也~</ul>
+            {% endfor %}
+            <div class="clearfloat" style="clear:both;"></div>
+        </div>
+        {% if page.object_list %}
+        <div class="pagenation" >
+            {% if page.has_previous %}
+            <a href="/order/order_list/?pageNow={{ page.previous_page_number }}">上一页</a>
+            {% endif %}
+
+            {% if num_pages > 1 %}
+            {% for pindex in pages %}
+            {% if pindex == page.number %}
+            <a href="/order/order_list/?pageNow={{ pindex }}" class="active">{{ pindex }}</a>
+            {% else %}
+            <a href="/order/order_list/?pageNow={{ pindex }}">{{ pindex }}</a>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            {% if page.has_next %}
+            <a href="/order/order_list/?pageNow={{ page.next_page_number }}">下一页></a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- end -->
+    <dl class="trinket_box" style="position:relative;top:50px;width:960px">
+        <dt><span>你可能还需要</span></dt>
+        <dd>
+            <ul id="b1">
+                <li class="goods_pic"><a href="#">
+                    <img src="/static/goods/img/c1.jpg" height="100" width="100"></a>
+                </li>
+                <li class="goods_name"><a href="#">
+                    53度 茅台 飞天带杯（2016年产）500ml</a>&nbsp;&nbsp;<span class="cf04"></span>
+                </li>
+                <li class="goods_price">999</li>
+                <li class="goods_btn"><a id="addToCat2" class="fl cbtn putin_btn AddCart" href="#" index="2">
+                    加入购物车</a>
+                </li>
+            </ul>
+            <ul id="b2">
+                <li class="goods_pic"><a href="#" target="_blank" title="52度 五粮液 500ml">
+                    <img src="/static/goods/img/c2.jpg" height="100" width="100"></a>
+                </li>
+                <li class="goods_name"><a href="#" target="_blank" title="52度 五粮液 500ml">
+                    52度 五粮液 500ml</a>&nbsp;&nbsp;<span class="cf04"></span>
+                </li>
+                <li class="goods_price">728</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:;" index="14">
+                    加入购物车</a>
+                </li>
+            </ul>
+            <ul id="b3">
+                <li class="goods_pic"><a href="#">
+                    <img alt="52度 剑南春 500ml" src="/static/goods/img/c3.jpg" height="100" width="100"></a>
+                </li>
+                <li class="goods_name"><a href="#">
+                    52度 剑南春 500ml</a>&nbsp;&nbsp;<span class="cf04">限时特惠 欲购从速</span></li>
+                <li class="goods_price">358</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:;" index="35">
+                    加入购物车</a>
+                </li>
+            </ul>
+            <ul id="b4">
+                <li class="goods_pic"><a href="#">
+                    <img src="/static/goods/img/c4.jpg" height="100" width="100"></a>
+                </li>
+                <li class="goods_name"><a href="#" target="_blank" title="52度 五粮液 1618 500ml">
+                    52度 五粮液 1618 500ml</a>&nbsp;&nbsp;<span class="cf04"></span>
+                </li>
+                <li class="goods_price">728</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="16">
+                    加入购物车</a>
+                </li>
+            </ul>
+            <ul id="b5">
+                <li class="goods_pic"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    <img alt="53度 茅台 迎宾酒 500ml*6瓶" src="/static/goods/img/c5.jpg" height="100" width="100"></a></li>
+                <li class="goods_name"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    53度 茅台 迎宾酒 500ml*6瓶</a>&nbsp;&nbsp;<span class="cf04">下单立减100元 多买多减</span></li>
+                <li class="goods_price">420</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="4098">
+                    加入购物车</a></li>
+            </ul>
+            <ul id="b6">
+                <li class="goods_pic"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    <img alt="53度 茅台 迎宾酒 500ml*6瓶" src="/static/goods/img/c6.jpg" height="100" width="100"></a></li>
+                <li class="goods_name"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    53度 茅台 迎宾酒 500ml*6瓶</a>&nbsp;&nbsp;<span class="cf04">下单立减100元 多买多减</span></li>
+                <li class="goods_price">420</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="4098">
+                    加入购物车</a></li>
+            </ul>
+            <ul id="b7">
+                <li class="goods_pic"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    <img alt="53度 茅台 迎宾酒 500ml*6瓶" src="/static/goods/img/c7.jpg" height="100" width="100"></a></li>
+                <li class="goods_name"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    53度 茅台 迎宾酒 500ml*6瓶</a>&nbsp;&nbsp;<span class="cf04">下单立减100元 多买多减</span></li>
+                <li class="goods_price">420</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="4098">
+                    加入购物车</a></li>
+            </ul>
+            <ul id="b8">
+                <li class="goods_pic"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    <img alt="53度 茅台 迎宾酒 500ml*6瓶" src="/static/goods/img/c8.jpg" height="100" width="100"></a></li>
+                <li class="goods_name"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    53度 茅台 迎宾酒 500ml*6瓶</a>&nbsp;&nbsp;<span class="cf04">下单立减100元 多买多减</span></li>
+                <li class="goods_price">420</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="4098">
+                    加入购物车</a></li>
+            </ul>
+            <ul id="b9">
+                <li class="goods_pic"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    <img alt="53度 茅台 迎宾酒 500ml*6瓶" src="/static/goods/img/c9.jpg" height="100" width="100"></a></li>
+                <li class="goods_name"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    53度 茅台 迎宾酒 500ml*6瓶</a>&nbsp;&nbsp;<span class="cf04">下单立减100元 多买多减</span></li>
+                <li class="goods_price">420</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="4098">
+                    加入购物车</a></li>
+            </ul>
+            <ul id="b10">
+                <li class="goods_pic"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    <img alt="53度 茅台 迎宾酒 500ml*6瓶" src="/static/goods/img/c10.jpg" height="100" width="100"></a></li>
+                <li class="goods_name"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    53度 茅台 迎宾酒 500ml*6瓶</a>&nbsp;&nbsp;<span class="cf04">下单立减100元 多买多减</span></li>
+                <li class="goods_price">420</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="4098">
+                    加入购物车</a></li>
+            </ul>
+            <ul id="b11">
+                <li class="goods_pic"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    <img alt="53度 茅台 迎宾酒 500ml*6瓶" src="/static/goods/img/c11.jpg" height="100" width="100"></a></li>
+                <li class="goods_name"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    53度 茅台 迎宾酒 500ml*6瓶</a>&nbsp;&nbsp;<span class="cf04">下单立减100元 多买多减</span></li>
+                <li class="goods_price">420</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="4098">
+                    加入购物车</a></li>
+            </ul>
+            <ul id="b12">
+                <li class="goods_pic"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    <img alt="53度 茅台 迎宾酒 500ml*6瓶" src="/static/goods/img/c12.jpg" height="100" width="100"></a></li>
+                <li class="goods_name"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    53度 茅台 迎宾酒 500ml*6瓶</a>&nbsp;&nbsp;<span class="cf04">下单立减100元 多买多减</span></li>
+                <li class="goods_price">420</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="4098">
+                    加入购物车</a></li>
+            </ul>
+
+        </dd>
+    </dl>
+
+</div>
+<div id="footer" style="position:relative;top:370px;">
+    <div class="footerbottom"
+         style="width: 960px;height:180px;background:#fafafa url(/static/goods/img/sanBao_07.gif) no-repeat left 20px; ">
+        <p>Copyright® 2009-2016 gjw.com, All Rights Reserved 上海线加下电子商务有限公司 版权所有</p>
+        <div class="authentication" style="padding-left:363px;">
+            <a href="javascript:;"></a>
+            <a href="javascript:;" class="fbright"></a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

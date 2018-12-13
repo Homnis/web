@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户博客---{% block title %}首页{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'js/lib/bootstrap-3.3.7-dist/css/bootstrap.css'%}">
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <script src="{% static 'js/lib/jquery/jquery-1.12.4.js' %}"></script>
+    <script src="{% static 'js/lib/bootstrap-3.3.7-dist/js/bootstrap.js' %}"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+    {% block nav %}
+    <!--导航部分开始-->
+    <nav class="navbar navbar-default navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{% url 'blog:index' %}">项目首页面</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            {% if request.session.loginUser %}
+                <li class="active"><a href="#">欢迎你，<span style="color: red;">{{request.session.loginUser.nickname}} </span>访问我们的系统</a></li>
+                <li><a href="{% url 'blog:user_list' %}">查看所有用户</a></li>
+                <li><a href="{% url 'blog:register' %}">注册</a></li>
+                <li><a href="{% url 'blog:logout' %}">退出登录</a></li>
+              {% else %}
+              <li class="active"><a href="{% url 'blog:login'%}">登录</a></li>
+              <li><a href="{% url 'blog:register' %}">注册</a></li>
+            {% endif %}
+          </ul>
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="请输入您要搜索的关键字">
+            </div>
+            <button type="submit" class="btn btn-sm btn-default">搜索</button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+              {% if request.session.loginUser %}
+                <li><a href="#">{{request.session.loginUser.nickname}}</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户操作 <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">个人中心</a></li>
+                    <li><a href="#">修改密码</a></li>
+                    <li><a href="#">用户头像</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{% url 'blog:article_add'%}">发表文章</a></li>
+                    <li><a href="{% url 'blog:list_self'%}">我的文章</a></li>
+                    <li role="separator" class="divider"></li>
+                   <li><a href="{% url 'blog:logout' %}">退出登录</a></li>
+                  </ul>
+                </li>
+              {% else %}
+                <li><a href="#">未登录用户</a></li>
+              {% endif %}
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% endblock %}
+    <!--导航部分结束-->
+
+    <!--页面主体部分开始-->
+    <div class="container">
+        {% block banner %}
+        <div class="page-header">
+            <div class="jumbotron">
+              <h1>图片轮播</h1>
+              <p>第一张图片</p>
+            </div>
+        </div>
+        {% endblock %}
+
+        <div class="row">
+            {% block left %}
+            <div class="col-md-3">
+                <div class="panel panel-primary">
+                  <div class="panel-heading">用户信息</div>
+                  <div class="panel-body">
+                    <ul class="list-group">
+                        {% if request.session.loginUser%}
+                          <li class="list-group-item">
+                              <img src="/{{request.session.loginUser.avatar}}" alt="用户头像" class="img-circle avatar">
+                          </li>
+                          <li class="list-group-item">
+                              用户名称：{{request.session.loginUser.username }}
+                          </li>
+                          <li class="list-group-item">
+                              用户性别：{{request.session.loginUser.gender }}
+                          </li>
+                          <li class="list-group-item">
+                              用户昵称：{{request.session.loginUser.nickname }}
+                          </li>
+                        {% else %}
+                            <li class="list-group-item">
+                                <a href="{% url 'blog:login' %}">用户登录</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{% url 'blog:register' %}">用户注册</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                  </div>
+                </div>
+            </div>
+            {% endblock %}
+
+            {% block content %}
+            <div class="col-md-9">
+                <div class="panel panel-primary">
+                  <div class="panel-heading">内容部分</div>
+                  <div class="panel-body">
+                    <h1>内容内</h1>
+                  </div>
+                </div>
+            </div>
+            {% endblock %}
+
+        </div>
+
+
+
+
+    </div>
+    <!--页面主体部分结束-->
+
+    <script>
+//        console.log(document.cookie)
+    </script>
+
+    <!--页面尾部开始-->
+    {% block footer %}
+    <div class="container">
+        <ul class="list-inline">
+            <li><a href="#">友情链接1---{{request.COOKIES.username}}</a></li>
+            <li><a href="#">友情链接2</a></li>
+            <li><a href="#">友情链接3</a></li>
+            <li><a href="#">友情链接4</a></li>
+            <li><a href="#">友情链接5</a></li>
+            <li><a href="#">友情链接6</a></li>
+            <li><a href="#">友情链接7</a></li>
+            <li><a href="#">友情链接8</a></li>
+            <li><a href="#">友情链接9</a></li>
+            <li><a href="#">友情链接10</a></li>
+            <li><a href="#">友情链接11</a></li>
+            <li><a href="#">友情链接12</a></li>
+            <li><a href="#">友情链接13</a></li>
+            <li><a href="#">友情链接14</a></li>
+            <li><a href="#">友情链接15</a></li>
+            <li><a href="#">友情链接16</a></li>
+            <li><a href="#">友情链接17</a></li>
+            <li><a href="#">友情链接18</a></li>
+            <li><a href="#">友情链接19</a></li>
+            <li><a href="#">友情链接20</a></li>
+            <li><a href="#">友情链接21</a></li>
+            <li><a href="#">友情链接22</a></li>
+            <li><a href="#">友情链接23</a></li>
+            <li><a href="#">友情链接24</a></li>
+            <li><a href="#">友情链接25</a></li>
+            <li><a href="#">友情链接26</a></li>
+            <li><a href="#">友情链接27</a></li>
+            <li><a href="#">友情链接28</a></li>
+            <li><a href="#">友情链接29</a></li>
+            <li><a href="#">友情链接30</a></li>
+            <li><a href="#">友情链接31</a></li>
+            <li><a href="#">友情链接32</a></li>
+            <li><a href="#">友情链接33</a></li>
+            <li><a href="#">友情链接34</a></li>
+            <li><a href="#">友情链接35</a></li>
+            <li><a href="#">友情链接36</a></li>
+            <li><a href="#">友情链接37</a></li>
+            <li><a href="#">友情链接38</a></li>
+            <li><a href="#">友情链接39</a></li>
+            <li><a href="#">友情链接40</a></li>
+            <li><a href="#">友情链接41</a></li>
+            <li><a href="#">友情链接42</a></li>
+            <li><a href="#">友情链接43</a></li>
+            <li><a href="#">友情链接44</a></li>
+            <li><a href="#">友情链接45</a></li>
+            <li><a href="#">友情链接46</a></li>
+            <li><a href="#">友情链接47</a></li>
+            <li><a href="#">友情链接48</a></li>
+            <li><a href="#">友情链接49</a></li>
+            <li><a href="#">友情链接50</a></li>
+        </ul>
+    </div>
+    {% endblock %}
+    <!--页面尾部结束-->
+
+</body>
+</html>

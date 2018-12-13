@@ -1,0 +1,39 @@
+{% extends 'article/base.html' %}
+{% block title%}用户详情{% endblock%}
+
+{% block content %}
+
+<div class="col-md-9">
+    <div class="panel panel-primary">
+        <div class="panel-heading">用户注册</div>
+        <div class="panel-body">
+            <table class="table table-hover table-bordered table-striped">
+                <thead>
+                <tr>
+                    <td>用户名称</td>
+                    <td>用户昵称</td>
+                    <td>用户性别</td>
+                    <td>用户邮箱</td>
+                    <td>用户年龄</td>
+                    <td>用户操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><a href="{% url 'article:user_info' %}">{{user.username}}</a></td>
+                    <td><a href="{% url 'article:user_info' %}">{{user.nickname}}</a></td>
+                    <td>{{user.gender}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.age}}</td>
+                    <td>
+                        <a class="btn btn-xs btn-primary" onclick="return window.confirm('您确定要修改该用户吗？')"
+                           href="{% url 'article:user_update' %}?id={{user.id}}">用户修改</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <!--{% csrf_token %}-->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'db_static/css/reg.css' %}">
+</head>
+<body>
+    <div id="reg">
+        <h1>Register</h1>
+        <form action="{% url 'db_static:doReg' %}" method="post">
+            <input type="text" required="required" placeholder="用户名" name="name">
+            <input type="password" required="required" placeholder="密码" name="psw">
+            <input type="text" required="required" placeholder="性别" name="gender">
+            <input type="text" required="required" placeholder="年龄" name="age">
+            <input type="text" placeholder="住址" name="address">
+            <button class="button_1" type="submit">注册</button>
+        </form>
+    </div>
+</body>
+</html>

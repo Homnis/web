@@ -1,0 +1,219 @@
+/****7,15改s****/
+a,a:hover{
+	text-decoration: none;
+}
+/****7,15改e****/
+.mid{
+	margin: 0 auto;
+	width:980px;
+}
+html{
+	background: #f2f2f2;
+	height:100%; 
+}
+body{
+	 height:100%;
+	background:url(../images/login_bg.gif) ;
+	background-repeat: repeat; 
+	animation:bg 150s linear infinite;
+	-moz-animation:bg 150s linear infinite; /* Firefox */
+	-webkit-animation:bg 150s linear infinite; /* Safari and Chrome */
+	-o-animation:bg 150s linear infinite; /* Opera */
+	font: 12px/1.5 'Microsoft YaHei' tahoma,arial,'Hiragino Sans GB',\5b8b\4f53,sans-serif;
+}
+.header{
+	width:100%;
+	height:89px;
+	border-bottom: 1px solid #c5c5c5;
+	background: #fff;
+}
+.content{
+	overflow: hidden;
+	
+}
+@keyframes bg
+{
+	0%   {background-position:0 0; }
+	
+	100% {background-position:-1000px -1000px;}
+}
+
+@-moz-keyframes bg /* Firefox */
+{
+	0%   {background-position:0 0; }
+	
+	100% {background-position:-1000px -1000px;}
+}
+
+@-webkit-keyframes bg /* Safari and Chrome */
+{
+	0%   {background-position:0 0; }
+	
+	100% {background-position:-1000px -1000px;}
+}
+@-ms-keyframes bg /* Safari and Chrome */
+{
+	0%   {background-position:0 0; }
+	
+	100% {background-position:-1000px -1000px;}
+}
+@-o-keyframes bg /* Safari and Chrome */
+{
+	0%   {background-position:0 0; }
+	
+	100% {background-position:-1000px -1000px;}
+}
+
+.logo{
+	float:left;
+	margin-top: 20px
+}
+.login_line{
+	margin-top:28px;
+	height: 30px;
+	line-height: 30px;
+}
+.login_line a{
+	display: inline-block;
+	margin-right: 30px;
+}
+.login_line a:last-child{
+	margin-right: 10px;
+}
+.icon{
+	display: inline-block;
+	margin-top: -3px;
+	margin-right: 5px;
+	vertical-align: middle;
+	width: 17px;
+	height: 17px;
+	mar
+}
+.blue{
+	color:#325e8f;
+	cursor: pointer;
+}
+a.red{
+	color:#cf0404;
+}
+.set{
+	background: url(../images/loginIcon.gif) no-repeat -1px -1px;
+}
+.service{
+	background: url(../images/loginIcon.gif) no-repeat -25px -1px;
+}
+
+/**文本框*s*/
+.text_box{
+	position: relative;
+	margin-top: -1px;
+	width:348px;
+	height:52px;
+	line-height:52px;
+	border: 1px solid #c5c5c5;
+	
+
+}
+.text_box.focus{
+	z-index: 3;
+	position: relative;
+	border: 1px solid rgb(102,175,233);
+	-webkit-transition:all 0.5s;
+	-ms-transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-o-transition:all 0.5s;
+	transition:all 0.5s;
+	-webkit-box-shadow: 0 0 5px rgba(102,175,233,1);
+	-ms-box-shadow: 0 0 5px rgba(102,175,233,1);
+	-moz-box-shadow: 0 0 5px rgba(102,175,233,1);
+	-o-box-shadow: 0 0 5px rgba(102,175,233,1);
+	box-shadow: 0 0 5px rgba(102,175,233,1);
+}
+.text_box label{
+	display: inline-block;
+	margin-left: 18px;
+	color: #969696;
+	vertical-align: middle;
+}
+.text_box i{
+	display: inline-block;
+	vertical-align: middle;
+	margin-top: -2px;
+	margin-left: 20px;
+	width:16px;
+	height: 18px;
+}
+.text_box input{
+	width: 260px;
+	border: none;
+	height: 24px;
+	line-height: 24px;
+	padding-bottom: 3px;
+	background: transparent;
+	vertical-align: middle;
+	text-indent: 20px;
+}
+.text_box input:focus{
+	outline: none;
+}
+.text_box .user{
+	width: 18px;
+	height: 18px;
+	background: url(../images/loginIcon.gif) no-repeat -46px -2px;
+}
+.text_box .pwd{
+	width: 18px;
+	height: 18px;
+	background: url(../images/loginIcon.gif) no-repeat -72px -1px;
+}
+.error{
+	position: absolute;
+	right:10px;
+	bottom:0;
+	color: #a94442;
+	height: 52px;
+	line-height: 52px;
+}
+.errorIcon{
+	display: inline-block;
+	margin-top:-3px;
+	margin-right: 3px;
+	width: 14px;
+	height: 12px;
+	vertical-align: middle;
+	background: url(../images/loginIcon.gif) no-repeat -16px -22px;
+	
+}
+.errorBox{
+	z-index: 3;
+	border: 1px solid rgb(169,68,66);
+	-webkit-box-shadow: 0 0 5px rgba(169,68,66,1);
+	-ms-box-shadow: 0 0 5px rgba(169,68,66,1);
+	-moz-box-shadow: 0 0 5px rgba(169,68,66,1);
+	-o-box-shadow: 0 0 5px rgba(169,68,66,1);
+	box-shadow: 0 0 5px rgba(169,68,66,1);
+}
+.meetIcon{
+	position: absolute;
+	right: 10px;
+	top:19px;
+	width: 16px;
+	height: 13px;
+	background: url(../images/loginIcon.gif) no-repeat 0 -21px;
+}
+/**文本框*e*/
+
+/***footer s*****/
+.footer{
+	margin-top: 50px;
+	text-align: center;
+	line-height: 22px;
+}
+.footer a{
+	display: inline-block;
+	margin: 0 10px;
+}
+.footer a:hover{
+	color: #c40000;
+};
+/***footer e*****/

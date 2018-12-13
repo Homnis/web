@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'db_static/css/info.css' %}">
+</head>
+<body>
+<div id="info_div">
+    <script>
+        var list={{List|safe}}
+        var tab='<table class="hovertable"><caption>users</caption>'
+        for(var i=0;i<list.length;i++){
+             tab+='<tr>'
+             tab+="<td>"+list[i]+"</td>"
+             tab+='</tr>'
+         }
+         tab+='</table>'
+         info_div.innerHTML=tab
+
+    </script>
+</div>
+</body>
+</html>

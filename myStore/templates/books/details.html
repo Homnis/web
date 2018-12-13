@@ -1,0 +1,787 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}商品详情{% endblock %}
+{% block sty %}
+<link rel="stylesheet" href="/static/goods/css/style.css">
+<link rel="stylesheet" href="/static/goods/css/main.css">
+<link rel="stylesheet" href="/static/goods/css/detail.css">
+<link rel="stylesheet" href="/static/goods/css/jquery.jqzoom.css">
+<link rel="icon" href="http://www.gjw.com/favicon.ico" type="image/ico">
+
+<script src="/static/goods/js/jquery-1.12.4.min.js"></script>
+<script src="/static/goods/js/index.js"></script>
+<script src="/static/goods/js/swiper.min.js"></script>
+<script src="/static/goods/js/html.js"></script>
+<script src="/static/goods/js/jquery.countdown.min.js"></script>
+<script src="/static/goods/js/common.js"></script>
+<script src="/static/goods/js/quick_links.js"></script>
+<script src="/static/goods/js/parabola.js"></script>
+<script src="/static/goods/js/jquery.jqzoom-core.js"></script>
+<script src="/static/goods/js/addshopcart_aj.js"></script>
+<link rel="stylesheet" href="{% static 'js/bootstrap-3.3.7-dist/css/bootstrap.css'%}">
+{% endblock %}
+
+
+{% block body %}
+<script>
+    $(function(){
+
+		<!--数量增加-->
+		$(".addN").on("click", function(){
+			$number = $("#txtQuantity").val()
+			$number = parseInt($number) + 1
+			$("#txtQuantity").val($number)
+
+		});
+
+
+		<!--数量减少-->
+		$(".diffN").click(function(){
+			$number = $("#txtQuantity").val()
+			$number = parseInt($number) - 1
+				if ($number == 0){
+					$number = 1
+				}
+			$("#txtQuantity").val($number)
+		});
+
+
+		<!--手动输入-->
+		$("#txtQuantity").blur(function(){
+			$number = $(this).val()
+			if ( isNaN($number) || $number.trim().length == 0 || parseInt($number)<= 0   ){
+				$number = 1
+			}
+			console.info($number)
+			$number = parseInt($number)
+			$("#txtQuantity").val($number)
+		});
+
+	})
+
+
+
+</script>
+
+
+<div id="indexcon">
+    <div class="probox">
+        <div class="proboxleft fl">
+            <div class="subnav">
+                <a href="/">首页</a>
+                <span>></span>
+                <a href="#" class="red">{{goods.name}}</a>
+            </div>
+            <div class="proboxleft-left fl">
+                <div class="preview">
+                    <a href="/static/{{de_img}}" class="jqzoom" rel="gal1">
+                        <img style="width:400px;height:400px;" id="midImg" src="/static/{{de_img}}">
+                    </a>
+                    <div class="spec">
+                        <div class="specleft"></div>
+                        <div class="speclist">
+                            <ul id="thumblist" class="clearfix listImg">
+                                <li><a class="zoomThumbActive" href="javascript:;"
+                                       rel="{gallery: 'gal1', smallimage: '/static/{{de_img}}',largeimage: '/static/{{de_img}}'}"><img
+                                        style="width:56px;height:56px;" src="/static/{{de_img}}"></a></li>
+                                {% for i in goods_images %}
+                                <li><a href="javascript:;"
+                                       rel="{gallery: 'gal1', smallimage: '/{{i.img}}',largeimage: '/{{i.img}}'}"><img
+                                        style="width:56px;height:56px;" src="/{{i.img}}"></a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="specleft"></div>
+                    </div>
+                    <div class="zoomlink">
+                        <p class="fl">分享到：</p>
+                        <div class="fl" style="line-height:45px;">
+                            <a href="#"><img src="/static/goods/img/lk1.jpg"></a>
+                            <a href="#"><img src="/static/goods/img/lk2.jpg"></a>
+                            <a href="#"><img src="/static/goods/img/lk3.jpg"></a>
+                            <a href="#"><img src="/static/goods/img/lk4.jpg"></a>
+                            <a href="#"><img src="/static/goods/img/lk5.jpg"></a>
+                            <a href="#"><img src="/static/goods/img/lk6.jpg"></a>
+                        </div>
+                        <div class="fr" style="width:90px;line-height:45px;"><a href="#" style="color:#999;"><img
+                                src="/static/goods/img/lk7.jpg">加入收藏</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="proboxleft-right fr">
+                <h2 style="font-family:'微软雅黑';">{{goods.name}}</h2>
+                <p class="red" style="text-indent:10px;height:38px;line-height:38px;">整箱优惠 预购从速</p>
+                <div class="pricebox" style="width:520px">
+                    <p class="oldPrice">
+                        <span>参考价:&nbsp;<s>￥{{goods.price|add:'866'}}</s></span>
+                    </p>
+                    <div class="newPriceBox">
+                        <p class="newPrice fl" style="margin-top: 0">
+                            活动价:
+                            <strong><span class="rmbIcon">￥</span> <span class="price"><span id="spPrice">{{goods.price}}</span></span></strong>
+                        </p>
+                        <div class="fl Etime">
+
+                        </div>
+                    </div>
+                    <br>
+                    <p class="sale cf">
+                        <span>促销信息:</span>
+                        <span class="redBox">
+                                限时抢购</span>
+                        <span class="red">
+                                    已优惠￥866元</span>
+                    </p>
+                </div>
+                <div class="transTo">
+                    <div class="psz fl">
+                        配&nbsp;送&nbsp;至:
+                    </div>
+                    <select style="position:relative;width:80px;left:10px" id="province">
+                        {% for p in provinces %}
+                        <option value="{{p.provinceid}}">{{p.province}}</option>
+                        {% endfor %}
+                    </select>
+                    <script language="javascript" type="text/javascript">
+                    $(document).ready(function() {
+                        $("#province").change(function(){ 
+                        var p=$('#province option:selected').val()
+                        $.ajax({
+                            url:"/getCity/",
+                            data:{csrfmiddlewaretoken:'{{ csrf_token }}',"provinceid":p},
+                            cache:"false",
+                            async:"true",
+                            type:"post",
+                            success:function(data){
+                                var city_dict=data
+                                city_list=Object.keys(city_dict)
+                                var cityTag=document.getElementById("city");
+                                cityTag.options.length = 0;
+                                for (i=0;i<=city_list.length ;i++){
+                                    cityTag.add(new Option(city_dict[city_list[i]],city_list[i]))
+                                }
+                            },
+                            error:function(){
+                                alert("服务器端异常");
+                            }
+                        });
+                    })
+                    })
+
+                    </script>
+                    <select style="position:relative;width:80px;left:10px" id="city">
+                    </select>
+                    <script language="javascript" type="text/javascript">
+                    $(document).ready(function() {
+                        $("#city").change(function(){ 
+                        var c=$('#city option:selected').val()
+                        $.ajax({
+                            url:"/getArea/",
+                            data:{csrfmiddlewaretoken:'{{ csrf_token }}',"cityid":c},
+                            cache:"false",
+                            async:"true",
+                            type:"post",
+                            success:function(data){
+                                var area_dict=data
+                                area_list=Object.keys(area_dict)
+                                var areaTag=document.getElementById("area");
+                                areaTag.options.length = 0;
+                                for (i=0;i<=area_list.length ;i++){
+                                    areaTag.add(new Option(area_dict[area_list[i]],area_list[i]))
+                                }
+                            },
+                            error:function(){
+                                alert("服务器端异常");
+                            }
+                        });
+                    })
+                    })
+
+                    </script>
+                    <select style="position:relative;width:80px;left:10px" id="area">
+                        {% for a in areas %}
+                        <option value="{{a.areaid}}">{{a.area}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <div class="yunfei fl" style="position:relative;top:0px;left:270px">
+                        &nbsp;单笔订单不满100元，收运费<span id="freightSpan">10</span>元，满百包邮
+                    </div>
+                    <a class="question" href="javascript:;"></a>
+                </div>
+                <div class="pay" style="width:520px">
+                    <p style="width: 169px; float: left; text-align: center;">
+                        关注度<em style="color: #c40000;">&nbsp;21066</em></p>
+                </div>
+                <div class="shul" style="margin-top:20px;line-height: 30px;">
+                    <span class="fl">数&nbsp;&nbsp;量：</span>
+                    <input class="nums fl" id="txtQuantity" value="1" type="text">
+                    <div class="addBtn">
+                        <span class="addN">+</span><span class="diffN">-</span>
+                    </div>
+                </div>
+                <div class="buybtn cl">
+                    <a id="addCat" class="addBuy btn btn-danger" target="_blank" rel="nofollow">立即购买</a>
+                    <a id="add_to_Cat" class="addBuy btn btn-danger" target="_blank" rel="nofollow"
+                       style="position:relative;left:80px">加入购物车</a>
+                    <script language="javascript" type="text/javascript">
+                    $(document).ready(function() {
+                        $("#add_to_Cat").click(function(){ 
+                        var number=$('#txtQuantity').val()
+                        $.ajax({
+                            url:"/shoppingCar/add/",
+                            data:{csrfmiddlewaretoken:'{{ csrf_token }}',"g_id":{{goods.id}},"count":number},
+                            cache:"false",
+                            async:"true",
+                            type:"post",
+                            success:function(data){
+                                alert("加入购物车成功");
+                            },
+                            error:function(){
+                                alert("服务器端异常");
+                            }
+                        });
+                    })
+                    })
+
+                    </script>
+                </div>
+                <p class="service">
+                    温馨提示：
+                    <font color="red">
+                        本商品禁用优惠券.
+                    </font>
+                    <br>
+
+                </p>
+            </div>
+        </div>
+        <div class="proboxright fl">
+            <ul class="listpro">
+                <li><a href="javascript:;"><img src="/static/goods/img/listpro1.jpg" alt=""></a></li>
+                <li>
+                    <a href="javascript:;">
+                        <p class="listprop">奔腾品牌馆</p>
+                        <a href="#" class="own" style="width:85px">官方自营</a>
+                    </a>
+                </li>
+                <li><a href="javascript:;" class="sevcices_online"></a></li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="/static/goods/img/listpro2.jpg" alt="">
+                        <img src="/static/goods/img/listpro3.jpg" alt="">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="proconitem">
+        <div class="proitem_left fl">
+            <div class="case1">
+                <div class="casetit">相关分类</div>
+                <ul class="case1list">
+                    <li><a href="javascript:;">白酒</a></li>
+                    <li><a href="javascript:;">葡萄酒</a></li>
+                    <li><a href="javascript:;">洋酒</a></li>
+                    <li><a href="javascript:;">黄酒</a></li>
+                    <li><a href="javascript:;">啤酒</a></li>
+                    <li><a href="javascript:;">养生酒</a></li>
+                    <li><a href="javascript:;">茶叶</a></li>
+                    <li><a href="javascript:;">老酒收藏</a></li>
+                </ul>
+            </div>
+            <div class="case1">
+                <div class="casetit">其他同类品牌分类</div>
+                <ul class="case1list">
+                    <li><a href="javascript:;">白酒</a></li>
+                    <li><a href="javascript:;">葡萄酒</a></li>
+                    <li><a href="javascript:;">洋酒</a></li>
+                    <li><a href="javascript:;">黄酒</a></li>
+                    <li><a href="javascript:;">啤酒</a></li>
+                    <li><a href="javascript:;">养生酒</a></li>
+                    <li><a href="javascript:;">茶叶</a></li>
+                    <li><a href="javascript:;">老酒收藏</a></li>
+                </ul>
+            </div>
+            <div class="casewrap">
+                <div class="case1 case2">
+                    <div class="otherpro">
+                        <a href="#"><img src="/static/goods/img/otherpro1.jpg" alt=""></a>
+                        <a href="#" title="52度 岳池特曲（新版） 500ml">52度 岳池特曲（新版） 500ml</a>
+                        <p class="red">￥198</p>
+                        <a href="#" class="addToC">加入购物车</a>
+
+                    </div>
+                </div>
+                <div class="case1 case2">
+                    <div class="otherpro">
+                        <a href="#"><img src="/static/goods/img/otherpro2.jpg" alt=""></a>
+                        <a href="#" title="52度 岳池特曲（新版） 500ml">52度 岳池特曲（新版） 500ml</a>
+                        <p class="red">￥198</p>
+                        <a href="#" class="addToC">加入购物车</a>
+
+                    </div>
+                </div>
+                <div class="case1 case2">
+                    <div class="otherpro">
+                        <a href="#"><img src="/static/goods/img/otherpro3.jpg" alt=""></a>
+                        <a href="#" title="52度 岳池特曲（新版） 500ml">52度 岳池特曲（新版） 500ml</a>
+                        <p class="red">￥198</p>
+                        <a href="#" class="addToC">加入购物车</a>
+
+                    </div>
+                </div>
+                <div class="case1 case2">
+                    <div class="otherpro">
+                        <a href="#"><img src="/static/goods/img/otherpro4.jpg" alt=""></a>
+                        <a href="#" title="52度 岳池特曲（新版） 500ml">52度 岳池特曲（新版） 500ml</a>
+                        <p class="red">￥198</p>
+                        <a href="#" class="addToC">加入购物车</a>
+
+                    </div>
+                </div>
+                <div class="case1 case2">
+                    <div class="otherpro">
+                        <a href="#"><img src="/static/goods/img/otherpro5.jpg" alt=""></a>
+                        <a href="#" title="52度 岳池特曲（新版） 500ml">52度 岳池特曲（新版） 500ml</a>
+                        <p class="red">￥198</p>
+                        <a href="#" class="addToC">加入购物车</a>
+
+                    </div>
+                </div>
+                <div class="case1 case2">
+                    <div class="otherpro">
+                        <a href="#"><img src="/static/goods/img/otherpro6.jpg" alt=""></a>
+                        <a href="#" title="52度 岳池特曲（新版） 500ml">52度 岳池特曲（新版） 500ml</a>
+                        <p class="red">￥198</p>
+                        <a href="#" class="addToC">加入购物车</a>
+
+                    </div>
+                </div>
+                <div class="case1 case2">
+                    <div class="otherpro">
+                        <a href="#"><img src="/static/goods/img/otherpro7.jpg" alt=""></a>
+                        <a href="#" title="52度 岳池特曲（新版） 500ml">52度 岳池特曲（新版） 500ml</a>
+                        <p class="red">￥198</p>
+                        <a href="#" class="addToC">加入购物车</a>
+
+                    </div>
+                </div>
+                <div class="case1 case2">
+                    <div class="otherpro">
+                        <a href="#"><img src="/static/goods/img/otherpro8.jpg" alt=""></a>
+                        <a href="#" title="52度 岳池特曲（新版） 500ml">52度 岳池特曲（新版） 500ml</a>
+                        <p class="red">￥198</p>
+                        <a href="#" class="addToC">加入购物车</a>
+
+                    </div>
+                </div>
+                <div class="case1 case2">
+                    <div class="otherpro">
+                        <a href="#"><img src="/static/goods/img/otherpro9.jpg" alt=""></a>
+                        <a href="#" title="52度 岳池特曲（新版） 500ml">52度 岳池特曲（新版） 500ml</a>
+                        <p class="red">￥198</p>
+                        <a href="#" class="addToC">加入购物车</a>
+
+                    </div>
+                </div>
+                <div class="case1 case2">
+                    <div class="otherpro">
+                        <a href="#"><img src="/static/goods/img/otherpro10.jpg" alt=""></a>
+                        <a href="#" title="52度 岳池特曲（新版） 500ml">52度 岳池特曲（新版） 500ml</a>
+                        <p class="red">￥198</p>
+                        <a href="#" class="addToC">加入购物车</a>
+
+                    </div>
+                </div>
+                <div class="case1 case2">
+                    <div class="otherpro">
+                        <a href="#"><img src="/static/goods/img/otherpro11.jpg" alt=""></a>
+                        <a href="#" title="52度 岳池特曲（新版） 500ml">52度 岳池特曲（新版） 500ml</a>
+                        <p class="red">￥198</p>
+                        <a href="#" class="addToC">加入购物车</a>
+
+                    </div>
+                </div>
+                <div class="case1 case2" style="border:0;">
+                    <div class="otherpro">
+                        <a href="#"><img src="/static/goods/img/otherpro12.jpg" alt=""></a>
+                        <a href="#" title="52度 岳池特曲（新版） 500ml">52度 岳池特曲（新版） 500ml</a>
+                        <p class="red">￥198</p>
+                        <a href="#" class="addToC">加入购物车</a>
+                    </div>
+                </div>
+            </div>
+            <div class="case1 case3">
+                <div class="casetit">已经浏览过的商品</div>
+                <img src="/static/goods/img/alepro.jpg" alt="" style="padding:10px 0 10px 10px">
+            </div>
+            <a href="#"><img src="/static/goods/img/proleft1.jpg" alt=""></a>
+            <a href="#"><img style="margin-top:10px;" src="/static/goods/img/proleft2.jpg" alt=""></a>
+
+        </div>
+        <div class="proitem_right fr">
+            <div class="tabnavBox">
+                <div class="navboxinner">
+                    <ul class="fl">
+                        <li><a class="active" href="javascript:;">买家评论</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cateBox bdbox" style="position:relative;top:21px;height:625px">
+                <ul class="order_lists">
+                    {% for com in page.object_list %}
+                    <li class="list_chk">
+                        <div style="height:105px">
+                            <a href="" class="pull-left" style="text-decoration:none;">
+                                <img src="/{{com.user.avatar}}" alt="" style="width:80px;height:80px;float:left;"
+                                     id="{{com.user.id}}">
+                                <label for="{{com.user.id}}" style="line-height:70px;width:150px;text-align:center">{{com.user.username}}</label>
+                            </a>
+                            <p style="line-height:70px;width:180px;height:80px;float:left;margin-left:120px">
+                                {% if com.rating == 1 %}
+                                <span>★</span>
+                                {% elif com.rating == 2 %}
+                                <span>★★</span>
+                                {% elif com.rating == 3 %}
+                                <span>★★★</span>
+                                {% elif com.rating == 4 %}
+                                <span>★★★★</span>
+                                {% elif com.rating == 5 %}
+                                <span>★★★★★</span>
+                                {% endif %}
+                            </p>
+                            <p style="line-height:70px;width:180px;height:80px;float:left;margin-left:10px">
+                                {{com.title}}</p>
+                            <small class="text-muted">{{com.pub_time}}</small>
+                            <p>{{com.content|striptags|slice:"30"}}</p>
+                        </div>
+                    </li>
+                    <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3);"
+                        width="80%" color=black SIZE=10>
+                    {% endfor %}
+                </ul>
+                {% if page.object_list %}
+                <ul class="pagination" style="position:relative;top:-20px;left:350px">
+                    {% if page.has_previous %}
+                    <li><a href="/details/{{ goods.id }}/?pageNow={{ page.previous_page_number }}">上一页</a></li>
+                    {% endif %}
+                    {% if num_pages > 1 %}
+                    {% for pindex in pages %}
+                    {% if pindex == page.number %}
+                    <li class="active"><a href="/details/{{ goods.id }}/?pageNow={{ pindex }}">{{ pindex }}</a></li>
+                    {% else %}
+                    <li><a href="/details/{{ goods.id }}/?pageNow={{ pindex }}">{{ pindex }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% if page.has_next %}
+                    <li><a href="/details/{{ goods.id }}/?pageNow={{ page.next_page_number }}">下一页></a></li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+        <div class="prointro">
+
+            <div class="pjxdbox" style="position:absolute;top:940px;left:561px;width:990px">
+                <div class="listtitle" style="width:990px">
+                    <span style="margin-right:280px">评论用户</span>
+                    <span style="margin-right:137px">满意度</span>
+                    <span style="margin-right:50px">评论标题</span>
+                    <span>评论内容</span>
+                </div>
+                {# 评论 #}
+            </div>
+            <div class="reminder" style="position:absolute;top:1620px;left:561px;width:990px">
+                <span class="rec">&nbsp;</span>
+                <span class="remintit">温馨提示</span>
+            </div>
+            <p class="remindertext" style="position:absolute;top:1650px;left:561px;width:990px">
+                根据《商标法》及国家工商总局文件要求，2014年5月1日之后不得将“驰 名 商
+                标”字样用于商品宣传（5月1日之前进入流通领域的除外），厂家正在按照新规定逐步更换包装，在此期间，我们将对新旧包装货品随机发货，请以实际收到的货物为准。详情请见：（<a href="#"
+                                                                                                     target="_blank">http://www.gjw.com/news/show-id-115.htm</a>）。给您带来的不便，敬请谅解。
+            </p>
+            <div class="cateBox" style="position:absolute;top:6390px;left:561px;width:990px">
+                <div class="headertit">
+                    浏览该商品的用户还查看了
+                </div>
+                <ul class="propicBox">
+                    <li>
+                        <a href="#"><img src="/static/goods/img/propic1.jpg" alt=""></a>
+                        <a href="#" title="53度 习酒 习酱 双喜 520ml*6">53度 习酒 习酱 双喜 520ml*6</a>
+                        <p class="red">￥888</p>
+                    </li>
+                    <li>
+                        <a href="#"><img src="/static/goods/img/propic2.jpg" alt=""></a>
+                        <a href="#" title="53度 习酒 习酱 双喜 520ml*6">53度 习酒 习酱 双喜 520ml*6</a>
+                        <p class="red">￥888</p>
+                    </li>
+                    <li>
+                        <a href="#"><img src="/static/goods/img/propic3.jpg" alt=""></a>
+                        <a href="#" title="53度 习酒 习酱 双喜 520ml*6">53度 习酒 习酱 双喜 520ml*6</a>
+                        <p class="red">￥888</p>
+                    </li>
+                    <li>
+                        <a href="#"><img src="/static/goods/img/propic4.jpg" alt=""></a>
+                        <a href="#" title="53度 习酒 习酱 双喜 520ml*6">53度 习酒 习酱 双喜 520ml*6</a>
+                        <p class="red">￥888</p>
+                    </li>
+                    <li>
+                        <a href="#"><img src="/static/goods/img/propic5.jpg" alt=""></a>
+                        <a href="#" title="53度 习酒 习酱 双喜 520ml*6">53度 习酒 习酱 双喜 520ml*6</a>
+                        <p class="red">￥888</p>
+                    </li>
+                    <li>
+                        <a href="#"><img src="/static/goods/img/propic6.jpg" alt=""></a>
+                        <a href="#" title="53度 习酒 习酱 双喜 520ml*6">53度 习酒 习酱 双喜 520ml*6</a>
+                        <p class="red">￥888</p>
+                    </li>
+                    <li>
+                        <a href="#"><img src="/static/goods/img/propic7.jpg" alt=""></a>
+                        <a href="#" title="53度 习酒 习酱 双喜 520ml*6">53度 习酒 习酱 双喜 520ml*6</a>
+                        <p class="red">￥888</p>
+                    </li>
+                    <li>
+                        <a href="#"><img src="/static/goods/img/propic8.jpg" alt=""></a>
+                        <a href="#" title="53度 习酒 习酱 双喜 520ml*6">53度 习酒 习酱 双喜 520ml*6</a>
+                        <p class="red">￥888</p>
+                    </li>
+                    <li>
+                        <a href="#"><img src="/static/goods/img/propic9.jpg" alt=""></a>
+                        <a href="#" title="53度 习酒 习酱 双喜 520ml*6">53度 习酒 习酱 双喜 520ml*6</a>
+                        <p class="red">￥888</p>
+                    </li>
+                    <li>
+                        <a href="#"><img src="/static/goods/img/propic10.jpg" alt=""></a>
+                        <a href="#" title="53度 习酒 习酱 双喜 520ml*6">53度 习酒 习酱 双喜 520ml*6</a>
+                        <p class="red">￥888</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="cateBox zlbox" style="position:absolute;top:2200px;left:561px;width:990px">
+                <div class="headertit">
+                    质量保证
+                </div>
+                <div class="proimgbox">
+                    <img src="/static/goods/img/sv1.jpg" alt="">
+                    <img src="/static/goods/img/sv2.jpg" alt="">
+                    <img src="/static/goods/img/sv3.jpg" alt="">
+                    <img src="/static/goods/img/sv4.jpg" alt="">
+                </div>
+            </div>
+            <div class="cateBox bdbox" style="height:500px;position:absolute;top:1740px;left:561px;width:990px">
+                <div class="headertit">
+
+                    <form action="{% url 'comments:add'%}" method="post">
+                        {% csrf_token %}
+                        商品评价
+                        <div class="input-group" style="position:relative;top:15px;left:12px">
+                            评分：
+                            <ul class="star"
+                                style="font-size: 30px;color: orange;list-style: none;position:relative;top:-32px;left:80px">
+                                <li style="float: left;cursor: pointer;" value="1">☆</li>
+                                <li style="float: left;cursor: pointer;" value="2">☆</li>
+                                <li style="float: left;cursor: pointer;" value="3">☆</li>
+                                <li style="float: left;cursor: pointer;" value="4">☆</li>
+                                <li style="float: left;cursor: pointer;" value="5">☆</li>
+                            </ul>
+                            <input type="text" hidden name="level" id="level">
+                            <input type="text" class="form-control" style="width:650px;position:relative;top:-20px"
+                                   placeholder="请输入评价标题" name="title">
+                            <script>
+                                    $(function(){
+                                        var wjx_none = '☆'; // 空心五角星
+                                        var wjx_sel = '★'; // 实心五角星
+                                        //鼠标移进变实星
+                                        $(".star li").on("mouseover",function(){
+                                            $(this).text(wjx_sel).prevAll("li").
+                                            text(wjx_sel).end().nextAll().text(wjx_none);
+                                        });
+                                        //鼠标移出变空星
+                                        $(".star li").on("mouseout",function(){
+                                           if($("li.current").length == 0){
+                                                $(".star li").text(wjx_none);
+                                           }else{
+                                               $("li .current").text(wjx_sel).prevAll().text(wjx_sel).end().nextAll().text(wjx_none);
+                                           }
+                                        });
+                                        //鼠标点击保持当前状态
+                                        $(".star li").on("click",function(){
+                                            console.info(parseInt($(this).val()))
+                                            $("#level").val(parseInt($(this).val()))
+                                            $(this).attr("class","current").siblings().removeClass("current");
+                                        });
+                                    });
+
+                            </script>
+                        </div><!-- /input-group -->
+                        <br>
+                        <div class="form_textbox form_sp" style="position:relative;top:-21px;left:-1px">
+                            <textarea class="form-control" name="comment" id="comment" rows="20"
+                                      placeholder="请输入您的评论内容"></textarea>
+                            <input type="text" hidden value="{{ goods.id }}" name="goods">
+                            <script type="text/javascript"
+                                    src="{% static 'js/tinymce/tiny_mce.js' %}"></script>
+                            <script type="text/javascript">
+                                        tinyMCE.init({
+                                            mode: "textareas",
+                                            theme: "advanced",
+                                            'width':989,
+                                            'height':300
+                                        });
+
+
+                            </script>
+                            <br>
+                            <input type="submit" value="提交评价"
+                                   style="position:relative;top:-350px;left:700px;height:50px;background-color:#B22222;color:white"/>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+{% endblock %}
+
+
+{% block bottom %}
+<!-- 底部部分 -->
+<div id="footer" style="position:relative;top:1800px;">
+    <div class="footermid">
+        <div class="footermidcon">
+            <div class="footermid_contop">
+                {# 短线上面的图 #}
+                <div class="footer_tel fl"></div>
+                <a href="javascript:;" class="footer_ser fl"><img src="/static/goods/img/onlineServ.png" alt=""></a>
+                <div class="fr qrCodeBox" style="">
+                    <p class="fl" style="color:black;width:200px">
+                        上海松江区茂盛路202弄18号<br>
+                        客服邮箱：kf@goujiuwang.com<br>
+                        <strong>扫描二维码，掌握一手资讯</strong><br>
+                    </p>
+                    <img src="/static/goods/img/weixin.jpg" alt="" class="fl footer_qrCode">
+                </div>
+            </div>
+            <div class="footerlink">
+                <dl>
+                    <dt>
+                        <a style="color:black" href="javascript:;">新手指南</a>
+                    </dt>
+                    <dd>
+                        <a href="javascript:;">用户协议</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">常见问题</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">网站购物流程</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">会员制度</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a style="color:black" href="javascript:;">如何付款</a>
+                    </dt>
+                    <dd>
+                        <a href="javascript:;">如何付款</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">发票制度说明</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">电子券说明</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">虚拟账户支付</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a style="color:black" href="javascript:;">配送方式</a>
+                    </dt>
+                    <dd>
+                        <a href="javascript:;">配送收费标准</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">配送时间</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">货到付款支持城市</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">实体加盟服务商</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a style="color:black" href="javascript:;">售后服务</a>
+                    </dt>
+                    <dd>
+                        <a href="javascript:;">如何办理退换货</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">如何退换货</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">联系客服</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a style="color:black" href="javascript:;">关于我们</a>
+                    </dt>
+                    <dd>
+                        <a href="javascript:;">了解购酒网</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">招兵买马</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">联系我们</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">隐私声明</a>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;">友情链接</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a style="color:black" href="javascript:;">合作共赢</a>
+                    </dt>
+                    <dd>
+                        <a class="" href="javascript:;">品牌馆</a>
+                    </dd>
+                    <dd>
+                        <a class="" href="javascript:;">大客户采购 new</a>
+                    </dd>
+                    <dd>
+                        <a class="" href="javascript:;">网站推广 new</a>
+                    </dd>
+                    <dd>
+                        <a class="" href="javascript:;">供应商供货 new</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="footerbottom">
+        <p>Copyright® 2009-2016 gjw.com, All Rights Reserved 上海线加下电子商务有限公司 版权所有</p>
+        <div class="authentication">
+            <a href="javascript:;"></a>
+            <a href="javascript:;" class="fbright"></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

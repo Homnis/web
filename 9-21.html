@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jQuery version/jquery-2.1.4.js" type="text/javascript" charset="utf-8"></script>
+		<script src="bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<script src="gov/js/jquery.slideBox.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="gov/css/jquery.slideBox.css"/>
+		<style type="text/css">
+			body{
+				background-color: #F5F5F5;
+			}
+			.centerDiv{
+				width: 1200px;
+				margin-left: auto;
+			}
+			.search a {
+			    display: block;
+			    width: 80px;
+			    height: 42px;
+			    position: absolute;
+			    top: 245px;
+			    left: 1450px;
+			    background: #cf0d0d;
+			    color: #fff;
+			    font-size: 16px;
+			    line-height: 40px;
+			    text-align: center;
+			    text-decoration: none;
+			    float:left;
+			    
+			}
+			.input_search {
+			    height: 40px;
+			    line-height: 20px;
+			    font-size: 14px;
+			    color: #666;
+			    border: 0;
+			    width: 285px;
+			    padding-left: 15px;
+			    position: absolute;
+			    top: 245px;
+			    left: 1150px;
+			}
+			.active:hover img{
+				transform: rotateY(180deg);
+			}
+			.active:hover{
+				background-color: #b60606;
+			}
+			.active_on{
+				background-color: #b60606;
+			}
+			.active_on:hover img{
+				transform: rotateY(180deg);
+			}
+			#div2{
+				width: 1250px;
+				margin-left: 300px;
+				margin-top: 100px;
+				height: 80px;
+			}
+			#nav_ul li img{
+                display: block;
+    			margin: 15px auto 10px auto;
+            	transition: all 0.3s ease-in;
+			}
+			#nav_ul li{
+				display: inline-block;
+				vertical-align: middle;
+				text-align: center;
+				width: 150px;
+				height: 80px;
+				position: relative;
+			}
+			#nav_ul li a{
+				display: block;
+			    text-decoration: none;
+			    color: white;
+			    line-height: 20px;
+			    height: 80px;
+			    overflow: hidden;
+			}
+			#div3{
+				background-color: white;
+				width: 1250px;
+				margin-left: 300px;	
+				height: 490px;
+				padding-top: 0;
+				padding-left: 20px;
+				padding-right: 30px;
+			}
+			#toutiao{
+				width: 1170px;
+				height: 74px;
+				overflow: hidden;
+				margin-left: 20px;
+				margin-top: 20px;
+				display: inline-block;
+			}
+			#toutiao i{
+				position: absolute;
+				left: 350px;
+				top: 417px;
+				background-image: url(gov/images/toutiao.png);
+				width: 82px;
+				height: 69px;
+			}
+			#toutiao h1{
+				margin-left: 50px;
+				margin-top: -10px;
+				font-weight: bold;
+			}
+			#toutiao a{
+				text-decoration: none;
+				font-size: 18px;
+				color: black;
+			}
+			#toutiao a:hover{
+				color: #b60606;
+			}
+			#toutiao p{
+				margin-top: -10px;
+				margin-left: 150px;
+				text-align: left;
+				font-size: 14px;
+				color: gray;
+			}
+			#newsText{
+				margin-top: -360px;
+				width: 600px;
+				height: 362px;
+			}
+			#titleName{
+				background-color: #cf0d0d;
+				font-weight: bold;
+				display: block;
+			    float: left;
+			    height: 39px;
+			    line-height: 39px;
+			    font-size: 15px;
+			    padding: 0 15px;
+			}
+			#currentNews{
+				text-decoration: none;
+			    color: white;
+			}
+			#moreNews{
+				float: right;
+				margin-top: 15px;
+				font-size: 10px;
+				text-decoration: none;
+				color: gray;
+			}
+			#moreNews:hover {
+				color: #008000;
+			}
+			#titleName i{
+				position: absolute;
+				left: 950px;
+				top: 534px;
+				background-image: url(gov/images/jtx.png);
+				width: 570px;
+				height: 10px;
+				background-repeat: no-repeat;
+				border-top: 1px solid gainsboro;
+			}
+			#hotTitle{
+				    font-size: 16px;
+				    color: #084466;
+				    text-align: center;
+				    margin: 10px 10px;
+				    height: 30px;
+				    line-height: 30px;
+				    word-break: break-all;
+				    overflow: hidden;
+			}
+			#hot{
+				display: block;
+				margin-top: 50px;
+			}
+			#hotInside a{
+				text-decoration: none;
+				color: #999;
+			    line-height: 24px;
+			    font-size: 14px;
+			}
+			#hotInside:hover a{
+				color: #b60606;
+			}
+			#newsList{
+				margin-left: -30px;
+				margin-top: 15px;
+				list-style-image: url(gov/images/listnot.png);
+			}
+			#newsList li {
+				height: 40px;
+				border-bottom: 1px solid gainsboro;
+			}
+			#newsList a{
+				text-decoration: none;
+				color: black;
+				height: 36px;
+			    width: 700px;
+			    line-height: 36px;
+			    font-size: 14px;
+			    color: #666;
+			    overflow: hidden;
+			}
+			#newsList span{
+				float: right;
+				font-size: 8px;
+			    line-height: 36px;
+			    color: #bbb;
+			}
+			#newsList li:hover a{
+				color: #b60606;
+			}
+			#div4{
+				background-image: url(gov/images/guanggao.jpg);
+				width: 1300px;
+				height: 81px;
+				position: absolute;
+				left: 290px;
+				top: 900px;
+				background-size: cover;
+			}
+			#div5{
+				position: absolute;
+				top: 1000px;
+				left: 280px;
+				width: 1300px;
+			}
+			#firstBlock{
+			    width: 400px;
+			    height: 400px;
+    			padding: 0;
+    			background: #fff;
+			}
+			#fbTitle{
+				overflow: hidden;
+    			padding-bottom: 15px;
+			}
+			#fbTitle p{
+				margin-left: 10px;
+				position: relative;
+				top: 5px;
+				font-size: 18px;
+    			color: #cf0d0d;
+    			margin-bottom: 4px;
+			}
+			#fbTitle span{
+				display: block;
+				font-size: 12px;
+			    color: #b6b6b6;
+			    margin-top: 10px;
+			    margin-left: 10px;
+			    padding-bottom: 10px;
+			    width: 380px;
+			    background: url(gov/images/titbot.png) left bottom no-repeat;
+			}
+			#fbTitle a{
+				text-decoration: none;
+				margin-top: 5px;
+				float: right;
+				font-size: 8px;
+				color: gainsboro;
+			}
+			#fbTitle a:hover{
+				color: #b60606;
+			}
+			#firstTxt{
+				font-size: 14px;
+			    line-height: 28px;
+			    color: #666;
+			    width: 380px;
+			    margin-top: 10px;
+			    margin-left: 10px;
+			    height: 170px;
+    			display: -webkit-box;
+        		-webkit-line-clamp: 6;
+    			-webkit-box-orient: vertical;
+			    overflow: hidden;
+			}
+			#secondBlock{
+			    width: 430px;
+			    height: 400px;
+    			padding: 0;
+    			position: relative;
+    			left: 420px;
+    			top: -400px;
+    			background: #fff;
+			}
+			#sbTitle{
+				overflow: hidden;
+    			padding-bottom: 15px;
+			}
+			#sbTitle p{
+				margin-left: 10px;
+				position: relative;
+				top: 5px;
+				font-size: 18px;
+    			color: #cf0d0d;
+    			margin-bottom: 4px;
+			}
+			#sbTitle span{
+				display: block;
+				font-size: 12px;
+			    color: #b6b6b6;
+			    margin-top: 10px;
+			    margin-left: 10px;
+			    padding-bottom: 10px;
+			    width: 380px;
+			    background: url(gov/images/titbot.png) left bottom no-repeat;
+			}
+			#sbTitle a{
+				text-decoration: none;
+				margin-top: 5px;
+				float: right;
+				font-size: 8px;
+				color: gainsboro;
+			}
+			#sbTitle a:hover{
+				color: #b60606;
+			}
+			#secondList{
+				margin-top: 30px;
+				margin-left: -10px;
+			}
+			#secondList li {
+				
+				height: 45px;
+				width: 360px;
+				border-bottom: 1px solid gainsboro;
+				background: url(gov/images/listnot.png) left center no-repeat;
+				list-style: none;
+				list-style-position: inside ;
+			}
+			#secondList a{
+				margin-left: 20px;
+				display: inline-block;
+				text-decoration: none;
+				color: black;
+				height: 36px;
+			    width: 300px;
+			    overflow: hidden;
+				text-overflow: ellipsis;
+				white-space:nowrap;
+			    line-height: 36px;
+			    font-size: 14px;
+			    color: #666;
+			    
+			}
+			#secondList span{
+				float: right;
+				font-size: 8px;
+			    line-height: 36px;
+			    color: #bbb;
+			}
+			#secondList a:hover{
+				color: #b60606;
+			}
+			#thirdBlock{
+			    width: 430px;
+			    height: 400px;
+    			padding: 0;
+    			position: relative;
+    			left: 870px;
+    			top: -800px;
+    			background: #fff;
+			}
+			#tdTitle{
+				overflow: hidden;
+    			padding-bottom: 15px;
+			}
+			#tdTitle p{
+				margin-left: 10px;
+				position: relative;
+				top: 5px;
+				font-size: 18px;
+    			color: #cf0d0d;
+    			margin-bottom: 4px;
+			}
+			#tdTitle span{
+				display: block;
+				font-size: 12px;
+			    color: #b6b6b6;
+			    margin-top: 10px;
+			    margin-left: 10px;
+			    padding-bottom: 10px;
+			    width: 380px;
+			    background: url(gov/images/titbot.png) left bottom no-repeat;
+			}
+			#serve li{
+				display: block;
+				margin-left: -30px;
+				margin-top: -10px;
+			    border-bottom: 1px solid #f2f2f2;
+			    border-right: 1px solid #f2f2f2;
+			    float: left;
+				width: 210px;
+				height: 100px;
+				text-align: center;
+			}
+			#serve a{
+				color: black;
+				text-decoration: none;
+			}
+			#serve li:hover img{
+				transform: rotateY(180deg);
+			}
+			#serve li:hover label{
+				color: #b60606;
+			}
+			#serve img{
+				margin-top: 20px;
+				transition: all 0.3s ease-in;
+				margin-bottom: 10px;
+			}
+			#serve label{
+				font-size: 12px;
+				color: #6e6e6e;
+			}
+			#div6{
+				position: absolute;
+    			left: 280px;
+    			top: 1420px;
+    			background-color: white;
+    			width: 1300px;
+    			height: 380px;
+			}
+			#videoTitle{
+				overflow: hidden;
+    			padding-bottom: 15px;
+			}
+			#videoTitle p{
+				margin-left: 10px;
+				position: relative;
+				top: 5px;
+				font-size: 18px;
+    			color: #cf0d0d;
+    			margin-bottom: 4px;
+			}
+			#videoTitle span{
+				display: block;
+				font-size: 12px;
+			    color: #b6b6b6;
+			    margin-top: 10px;
+			    margin-left: 10px;
+			    padding-bottom: 10px;
+			    background: url(gov/images/titbot.png) left bottom no-repeat;
+			}
+			#videoTitle a{
+				text-decoration: none;
+				margin-top: 5px;
+				float: right;
+				margin-right: 150px;
+				font-size: 8px;
+				color: gainsboro;
+			}
+			#videoTitle a:hover{
+				color: #0078B5;
+			}
+			#videoList li{
+				display: block;
+				margin-left: -30px;
+				margin-top: -10px;
+			    border-bottom: 1px solid #f2f2f2;
+			    border-right: 1px solid #f2f2f2;
+			    float: left;
+			    margin-right: 50px;
+				width: 286px;
+				height: 100px;
+				text-align: center;
+			}
+			#videoList a{
+				color: black;
+				text-decoration: none;
+			}
+			#videoList li:hover label{
+				color: #b60606;
+			}
+			#videoList img{
+				margin-top: 20px;
+				margin-bottom: 10px;
+			}
+			#videoList label{
+				font-size: 12px;
+				color: #6e6e6e;
+			}
+			#div7{
+				position: absolute;
+    			left: 280px;
+    			top: 1420px;
+    			background-color: white;
+    			width: 1300px;
+    			height: 380px;
+			}
+			#div7{
+				margin-top: 400px;
+				height: 38px; 
+				border-bottom: 2px solid #d00c0d;
+			}
+			#div7 a{
+				display: block; 
+				height: 38px; 
+				line-height: 38px; 
+				float: left; 
+				padding: 0 40px; 
+				color: #333; 
+				transition: all .3s ease; 
+				font-size: 14px;
+				text-decoration: none;
+			}
+			#div7 a.current{
+				background: #d00c0d; 
+				color: #fff;
+			}
+			#div8{
+				position: absolute;
+    			left: 280px;
+    			top: 1890px;
+    			background-color: white;
+    			width: 1300px;
+    			height: 380px;
+			}
+			#div8 div{
+				margin-top: 50px;
+				text-align: center;
+				font-size: 12px;
+				color: #6E6E6E;
+			}
+		</style>
+	</head>
+	<body style="background-image: url(gov/images/bdbj.png);background-repeat: no-repeat;">
+		<div id="div1" class="centerDiv" style="margin-top: 80px;">
+			<!--标题-->
+			<a href="#" style="margin-left: -360px;"><img src="gov/images/logo.png"/></a>
+			<div class="search">
+			  	<input type="text" placeholder="请输入您的搜索关键词" class="input_search">
+			  	<a href="#">搜索</a>
+			</div>
+		</div>
+		<div id="div2">
+			<!--导航栏-->
+			<ul class="" id="nav_ul" style="list-style: none;background-color: #DD0000;padding: 0;">
+		       <li class="active_on"><a href="#"><img src="gov/images/iconnav01.png">首页</a></li>
+		       <li class="active"><a href="#"><img src="gov/images/iconnav02.png">走进小镇</a></li>
+		       <li class="active"><a href="#"><img src="gov/images/iconnav03.png">新闻动态</a></li>
+		       <li class="active"><a href="#"><img src="gov/images/iconnav04.png">企业社区</a></li>
+		       <li class="active"><a href="#"><img src="gov/images/iconnav05.png">视频专区</a></li>
+		       <li class="active"><a href="#"><img src="gov/images/iconnav06.png">办事大厅</a></li>
+		       <li class="active"><a href="#"><img src="gov/images/iconnav07.png">联系我们</a></li>
+		       <li class="active"><a href="#"><img src="gov/images/iconnav08.png">咨询投诉</a></li>
+		    </ul>
+		</div>
+		<br />
+		<div id="div3">
+			<!--新闻动态，图片轮转-->
+			<div id="toutiao" style="text-align: center;background-color: #F5F5F5;">
+				<!--头条-->
+				<i></i>
+			  	<h1><a href="#" style="">市软件园保险小镇召开安全生产工作会议</a></h1>
+			  	<p>2017年8月11日下午，市软件园管理办副主任臧其武主持召开安全生产专题会议，传递湖滨新区相关文件精神并部署近期安全生产相关工作，管理办治安办、知源公司负责人及.....</p>
+			</div>
+			<div id="news">
+				<div id="newsPic" class="slideBox">
+					<ul class="items" style="width: 2800px; left: -2177.88px;">
+			            <li class="" style="width: 560px; height: 362px;"><a href="#" title="本会召开第一届第一次主任会议和委员会议1"><img src="gov/upload/newsimg.jpg"></a></li>
+			            <li class="" style="width: 560px; height: 362px;"><a href="#" title="本会召开第一届第一次主任会议和委员会议2"><img src="gov/upload/newsimg.jpg"></a></li>
+			            <li class="" style="width: 560px; height: 362px;"><a href="#" title="本会召开第一届第一次主任会议和委员会议3"><img src="gov/upload/newsimg.jpg"></a></li>
+			            <li class="" style="width: 560px; height: 362px;"><a href="#" title="本会召开第一届第一次主任会议和委员会议4"><img src="gov/upload/newsimg.jpg"></a></li>
+			            <li class="" style="width: 560px; height: 362px;"><a href="#" title="本会召开第一届第一次主任会议和委员会议5"><img src="gov/upload/newsimg.jpg"></a></li>
+			       </ul>
+				</div>
+				<script type="text/javascript">
+					$(document).ready(function () {
+		               $('#newsPic').slideBox({
+		                   direction: 'left',//left,top#方向
+		                   duration: 0.3,//滚动持续时间，单位：秒
+		                   easing: "linear",//swing,linear//滚动特效
+		                   delay: 5,//滚动延迟时间，单位：秒
+		                   startIndex: 1//初始焦点顺序
+		                });
+		          });
+				</script>
+				<div id="newsText" style="float: right;">
+					<div id="newsTitle">
+				        <div id="titleName">
+				        	<a href="#" id="currentNews">新闻动态</a>
+				        	<br />
+				        	<i></i>
+				        </div>
+				        <a href="#" id="moreNews">更多 &gt;&gt;</a>
+				    </div>
+					
+				    <div id="hot">
+				        <div id="hotNews">
+				          <h1 id="hotTitle">1本会召开第一届第一次主任会议和委员会议</h1>
+				          		<div id="hotInside" style="margin-top: 15px;"><a href="#">2017年2月20日，中卫仲裁委员会召开了中卫仲裁委员会第一届第一次主
+					          		任会议和第一届第一次委员会议。会议由中卫市委常委、副市长、中卫仲裁委员会主任袁诗鸣主持。副主任
+					          		李斌、郝正智、姜丽丽，委员盛建宁、张学文、俞正荣、李宝庆、王占强等出席了会议...</a></div>
+				        </div>
+				        <ul id="newsList" >
+				          <li><a href="#">本会开展加强仲裁工作推进会议</a><span>09-10</span></li>
+				          <li><a href="#">本会召开第一届仲裁员聘任会议</a><span>09-10</span></li>
+				          <li><a href="#">本会与市中级人民法院就建立仲裁与诉讼衔接机制召开座谈会</a><span>09-10</span></li>
+				          <li><a href="#">宁夏仲裁工作座谈会在我市召开</a><span>09-10</span></li>
+				          <li style="border-bottom: 0;"><a href="#">“一带一路”仲裁发展交流会在我市召开</a><span>09-10</span></li>
+				        </ul>
+				    </div>
+				</div>
+			</div>
+		</div>
+		<div id="div4">
+			<!--插入分割图片-->
+		</div>
+		<div id="div5">
+			<!--三个并排块 公告等-->
+			<div id="firstBlock">
+				<div id="fbTitle">
+					<p>小镇简介<a href="#" >更多 &gt;&gt;</a></p>
+					<span>Introduction to the town</span>
+				</div>
+				<div>
+					<img src="gov/images/abt.jpg" style="width: 400px;">
+					<div id="firstTxt">保险小镇是全国首家保险特色小镇保险小镇是全
+						国首家保险特色小镇保险小镇是全国首家保险特色小镇保险小镇是全国
+						首家保险特色小镇保险小镇是全国首家保险特色小镇保险小镇是全国首家保
+						险特色小镇保险小镇是全国首家保险特色小镇保险小镇是全国首家保险特色小镇
+						保险小镇是全国首家保险特色小镇保险小镇是全保险特色小镇保险小镇是全国首镇是
+						全国首保险特色小镇保险特色小镇保险小镇是全国首保险特色小镇保险小镇是全国首
+						保险特色小镇保险小镇是全国首保险特色小镇保险小镇是全国首保险特色小镇
+						保险小镇是全国首保险小镇是全国首保险特色小镇保险小镇是全国首家保险特色小镇</div>
+				</div>
+			</div>
+			
+			<div id="secondBlock">
+				<div id="sbTitle">
+					<p>公示公告<a href="#" >更多 &gt;&gt;</a></p>
+					<span>Publicity announcement</span>
+				</div>
+				<div>
+					<ul id="secondList" >
+				          <li><a href="#">本会开展加强仲裁工作推进会议</a><span>09-10</span></li>
+				          <li><a href="#">本会召开第一届仲裁员聘任会议</a><span>09-10</span></li>
+				          <li><a href="#">本会与市中级人民法院就建立仲裁与诉讼衔接机制召开座谈会</a><span>09-10</span></li>
+				          <li><a href="#">宁夏仲裁工作座谈会在我市召开</a><span>09-10</span></li>
+				          <li style="border-bottom: 0;"><a href="#">“一带一路”仲裁发展交流会在我市召开</a><span>09-10</span></li>
+				        </ul>
+				</div>
+			</div>
+			
+			<div id="thirdBlock">
+				<div id="tdTitle">
+					<p>交流互动</p>
+					<span>interact</span>
+				</div>
+				<ul id="serve">
+					<li><a href="#"><img src="gov/images/fuwuicon01.png" id="img1"/><br /><label for="#img1">办事大厅</label></a></li>
+					<li><a href="#"><img src="gov/images/fuwuicon02.png" id="img1"/><br /><label for="#img1">企业社区</label></a></li>
+					<li><a href="#"><img src="gov/images/fuwuicon03.png" id="img1"/><br /><label for="#img1">小镇优势</label></a></li>
+					<li><a href="#"><img src="gov/images/fuwuicon04.png" id="img1"/><br /><label for="#img1">意见征集</label></a></li>
+					<li><a href="#"><img src="gov/images/fuwuicon05.png" id="img1"/><br /><label for="#img1">咨询投诉</label></a></li>
+					<li><a href="#"><img src="gov/images/fuwuicon06.png" id="img1"/><br /><label for="#img1">12345热线</label></a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="div6">
+			<!--视频专区-->
+			<div id="videoTitle">
+					<p>视频专区<a href="#" >更多 &gt;&gt;</a></p>
+					<span>Video area</span>
+			</div>
+			<div id="videos">
+				<ul id="videoList">
+					<li><a href="#"><img src="gov/images/sp.jpg" id="video1"/><br /><label for="#video1">活动专题</label></a></li>
+					<li><a href="#"><img src="gov/images/sp.jpg" id="video1"/><br /><label for="#video1">活动专题</label></a></li>
+					<li><a href="#"><img src="gov/images/sp.jpg" id="video1"/><br /><label for="#video1">活动专题</label></a></li>
+					<li><a href="#"><img src="gov/images/sp.jpg" id="video1"/><br /><label for="#video1">活动专题</label></a></li>
+				</ul>
+				
+			</div>
+		</div>
+		<div id="div7">
+			<div >
+				<a href="#" class="current">市直属机构</a>
+				<a href="#" class="">区局单位</a>
+				<a href="#" class="">其他</a>
+			</div>	
+			<div >
+				<div>
+					<div id="firstChoice" style="display: none;">
+						<ul class="linkslist">
+							<li><a href="#">市政府官方</a></li>
+							<li><a href="#">市政府官方</a></li>
+						</ul>
+					</div>
+					<div id="secondChoice" style="display: none;">
+						<ul class="linkslist">
+							<span >
+								gafh
+							</span>
+							<li><a href="#">市政府官方</a></li>
+							<li><a href="#">市政府官方</a></li>
+							<li><a href="#">市政府官方</a></li>
+						</ul>
+					</div>
+					<div id="thirdChoice" style="display: none;">
+						<ul class="linkslist">
+							<li><a href="#">市政府官方</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="div8">
+			<!--底部-->
+			<div>
+				版权所有：中国宿迁·保险小镇
+				<br>
+				Copyright © 2013 - 2017 mxxz.com All Rights Reserved   苏公网安备15001983号
+				<br>
+				联系地址：宿迁市水杉大道1号  联系电话：0527-82561000  传真：0527-82561002
+				<br>
+				技术支持：沃尔普科技
+			</div>
+		</div>
+	</body>
+</html>

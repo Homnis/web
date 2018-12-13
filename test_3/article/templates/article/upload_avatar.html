@@ -1,0 +1,51 @@
+{% extends 'article/base.html' %}
+{% block title%}上传头像{% endblock%}
+
+{% block content %}
+<div class="col-md-9">
+    <div class="panel panel-primary">
+        <div class="panel-heading">上传头像</div>
+        <div class="panel-body">
+            <form class="form-horizontal" action="{% url 'article:upload_avatar'%}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="photoCover" class="col-sm-2 control-label">上传头像</label>
+                    <div class="col-sm-8">
+                        <input id="photoCover" class="form-control" type="text" style="height:30px;">
+                    </div>
+                    <input id="file" type="file" style="display:none" name="avatar">
+                    <a class="btn btn-primary" onclick="$('input[id=file]').click();">Browse</a>
+                    <script type="text/javascript">
+                        $('input[id=file]').change(function() {
+                        $('#photoCover').val($(this).val());
+                        });
+                    </script>
+                </div>
+                <div class="form-group">
+                    <label for="newImg" class="col-sm-2 control-label">上传头像</label>
+                    <img id="newImg" src="" alt="pic" title="自定义背景"/>
+                    <script>
+                        $('#file').on('change',function(){
+                            var filePath = $(this).val(),         //获取到input的value，里面是文件的路径
+                                fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+                                src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+                            // 检查是否是图片
+                            if( !fileFormat.match(/.png|.jpg|.gif|.jpeg/) ) {
+                                error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg/gif');
+                                return;
+                            }
+                            $('#newImg').attr('src',src);
+                    });
+                    </script>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-danger">确定</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

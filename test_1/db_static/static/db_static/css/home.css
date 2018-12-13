@@ -1,0 +1,31 @@
+#div1{
+	width: 1750px;
+	margin-left: 320px;
+	margin-top: 50px;
+	height: 80px;
+}
+#div1 ul li{
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	width: 150px;
+	height: 80px;
+	position: relative;
+}
+#div1 ul li a{
+	overflow: hidden;
+	text-decoration: none;
+	/*color: white;*/
+	display: block;
+}
+#div1 ul li img{
+    display: block;
+	margin: 15px auto 10px auto;
+	transition: all 0.3s ease-in;
+}
+.active:hover img{
+	transform: rotateY(180deg);
+}
+.active_on:hover img{
+	transform: rotateY(180deg);
+}

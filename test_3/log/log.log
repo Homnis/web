@@ -1,0 +1,59 @@
+首页开始加载数据量……
+Internal Server Error: /article/index/
+Traceback (most recent call last):
+  File "E:\web\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "E:\web\venv\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\web\venv\lib\site-packages\django\core\handlers\base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\web\test_3\article\views.py", line 21, in index
+    pageSize = settings.PAGE_SIZE
+  File "E:\web\venv\lib\site-packages\django\conf\__init__.py", line 58, in __getattr__
+    val = getattr(self._wrapped, name)
+AttributeError: 'Settings' object has no attribute 'PAGE_SIZE'
+"GET /article/index/ HTTP/1.1" 500 69993
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 2081
+首页开始加载数据量……
+"GET /article/index/ HTTP/1.1" 200 7885
+"GET /static/article/css/common.css HTTP/1.1" 304 0
+"GET /static/article/img/back.jpg HTTP/1.1" 304 0
+"GET /static/article/img/guidao-009.jpg HTTP/1.1" 304 0
+"GET /static/article/img/default.gif HTTP/1.1" 304 0
+"GET /static/article/img/guidao-008.jpg HTTP/1.1" 304 0
+Not Found: /blog/index/
+"GET /blog/index/?pageNow=2 HTTP/1.1" 404 2091
+Not Found: /blog/index/
+"GET /blog/index/?pageNow=2 HTTP/1.1" 404 2091
+Not Found: /blog/index/
+"GET /blog/index/?pageNow=2 HTTP/1.1" 404 2091
+Not Found: /blog/index/
+"GET /blog/index/?pageNow=2 HTTP/1.1" 404 2091
+Not Found: /blog/index/
+"GET /blog/index/?pageNow=2 HTTP/1.1" 404 2091
+首页开始加载数据量……
+"GET /article/index/ HTTP/1.1" 200 7900
+首页开始加载数据量……
+"GET /article/index/ HTTP/1.1" 200 7900
+首页开始加载数据量……
+"GET /article/index/?pageNow=2 HTTP/1.1" 200 8492
+首页开始加载数据量……
+"GET /article/index/?pageNow=3 HTTP/1.1" 200 8570
+首页开始加载数据量……
+"GET /article/index/ HTTP/1.1" 200 7900
+"GET /static/article/css/common.css HTTP/1.1" 304 0
+"GET /static/article/img/back.jpg HTTP/1.1" 304 0
+"GET /static/article/img/guidao-009.jpg HTTP/1.1" 304 0
+"GET /static/article/img/default.gif HTTP/1.1" 304 0
+"GET /static/article/img/guidao-008.jpg HTTP/1.1" 304 0
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 2081
+"GET /article/login/ HTTP/1.1" 200 5940
+"POST /article/login/ HTTP/1.1" 200 5983
+"POST /article/login/ HTTP/1.1" 200 5983
+"GET /article/register/ HTTP/1.1" 200 10059
+"GET /article/code/ HTTP/1.1" 200 5459
+"POST /article/register/ HTTP/1.1" 200 10047
+"GET /article/code/ HTTP/1.1" 200 6032
+"GET /article/register/ HTTP/1.1" 200 10059

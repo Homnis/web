@@ -1,0 +1,56 @@
+{% extends 'article/base.html' %}
+{% block title%}修改密码{% endblock%}
+
+{% block content %}
+<div class="col-md-9">
+    <div class="panel panel-primary">
+        <div class="panel-heading">修改密码</div>
+        <div class="panel-body">
+            <h4 style="color: red">{{msg}}</h4>
+
+            <form class="form-horizontal" action="{% url 'article:psw_update'%}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="oldPsw" class="col-sm-2 control-label">当前密码</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="oldPsw" id="oldPsw" placeholder="请输入您当前的密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="newPsw" class="col-sm-2 control-label">新密码</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" name="newPsw" id="newPsw"
+                               placeholder="请输入您的新密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPsw" class="col-sm-2 control-label">请再输入一遍</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" name="confirmPsw" id="confirmPsw"
+                               placeholder="请再次输入您的新密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-danger">确定</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--<script>-->
+    <!--function confirm(){-->
+        <!--var psw1=document.getElementById("newPsw").value;-->
+        <!--var psw2=document.getElementById("confirmPsw").value;-->
+        <!--if (psw1 != psw2){-->
+            <!--alert('wrong');-->
+            <!--return false;-->
+        <!--}-->
+        <!--else{-->
+            <!--return true;-->
+        <!--}-->
+<!--});-->
+
+<!--</script>-->
+{% endblock %}

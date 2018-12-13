@@ -1,0 +1,2022 @@
+﻿body
+{
+    font-family: "微软雅黑";
+}
+
+/*中间样式-s*/
+.centerBox
+{
+    width: 100%;
+    height: auto;
+    background: #F6F4F5;
+}
+
+.mainBox
+{
+    width: 1200px;
+    height: auto;
+    background: #FFFFFF;
+    margin: 0 auto;
+}
+
+.category
+{
+    width: 1200px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 12px;
+    color: #797979;
+    background: #F6F4F5;
+}
+
+    .category a
+    {
+        display: inline-block;
+    }
+
+    .category span
+    {
+        padding: 0 5px;
+    }
+
+.glass .pic-minlist
+{
+    margin-left: 45px;
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 76px;
+    height: 258px;
+}
+
+.pic-minlist li
+{
+    margin-bottom: 10px;
+    border: 1px solid #EEEEEE;
+    cursor: pointer;
+    padding: 1px 1px;
+}
+
+.pic-minlist .select
+{
+    border: 2px solid #DC3334;
+    padding: 0 0;
+}
+
+    .pic-minlist .select img
+    {
+        vertical-align: top;
+    }
+
+.pic-minlist li img
+{
+    vertical-align: top;
+    width: 72px;
+    height: 72px;
+}
+
+.picshowbox
+{
+    width: 420px;
+    height: auto;
+}
+
+#itempicshow
+{
+    width: 420px;
+    height: 420px;
+    margin-top: 20px;
+    border: 1px solid #EEEEEE;
+}
+
+.shareBox
+{
+    position: relative;
+    left: -94px;
+    float: left;
+}
+
+    .shareBox span
+    {
+        line-height: 45px;
+        color: #666666;
+        font-size: 13px;
+        float: left;
+    }
+
+    .shareBox .share_weixin
+    {
+        width: 6px;
+        height: 18px;
+        background: url(../img/shareicon.png);
+        background-position: 0px 18px;
+        display: inline-block;
+        margin-top: 15px;
+        vertical-align: top;
+    }
+
+    .shareBox .share_tsina
+    {
+        width: 6px;
+        height: 18px;
+        background: url(../img/shareicon.png);
+        background-position: 23px 18px;
+        display: inline-block;
+        margin-top: 15px;
+        vertical-align: top;
+    }
+
+        .shareBox .share_tsina:hover
+        {
+            background-position: 23px 0px;
+        }
+
+    .shareBox .share_weixin:hover
+    {
+        background-position: 0px 0px;
+    }
+
+.itemmsg
+{
+    width: 520px;
+    margin: 0 0 0 42px;
+    color: #666;
+    margin-top: 20px;
+    position: relative;
+}
+
+.sppp
+{
+    position: absolute;
+    right: -75px;
+    top: 0;
+    width: 80px;
+    text-align: center;
+    font-size: 13px;
+}
+
+    .sppp em
+    {
+        background: rgb(161,139,126);
+        color: #fff;
+        border-radius: 4px 4px;
+        padding: 1px 5px;
+        line-height: 30px;
+        height: 30px;
+    }
+
+.noprinote
+{
+    width: 520px;
+    color: #cb192e;
+    line-height: 28px;
+    font-weight: 900;
+    font-size: 12px;
+}
+
+.latebox
+{
+    width: 503px;
+    border: 1px solid #DADADA;
+    padding: 0 0 5px 14px;
+}
+
+    .latebox h3
+    {
+        font-size: 14px;
+        color: #cb192e;
+        line-height: 5px;
+        padding: 10px;
+    }
+
+    .latebox ul li
+    {
+        width: 145px;
+        height: 129px;
+        float: left;
+        padding-left: 20px;
+    }
+
+        .latebox ul li .ico
+        {
+            width: 130px;
+            height: 72px;
+        }
+
+        .latebox ul li .tle
+        {
+            width: 130px;
+            height: 30px;
+            font-size: 10px;
+            color: #6666;
+            line-height: 15px;
+            margin-top: 4px;
+            overflow: hidden;
+        }
+
+        .latebox ul li .jiage
+        {
+            color: #cb192e;
+            font-weight: 600;
+            font-family: Arial, "微软雅黑",sans-serif;
+            font-size: 15px;
+        }
+
+.ico img
+{
+    width: 72px;
+    height: 72px;
+}
+
+
+.itemmsg .itemtitle
+{
+    font-size: 16px;
+    width: 480px;
+    line-height: 20px;
+    color: #000;
+    font-weight: 700;
+    font-family: "微软雅黑";
+}
+
+.itemmsg .redad
+{
+    color: #e3393c;
+    width: 480px;
+    font-family: arial,"微软雅黑";
+    font-size: 14px;
+    line-height: 20px;
+    word-break: break-all;
+    margin-top: 7px;
+}
+
+.priceBox
+{
+    margin-top: 10px;
+    padding: 10px 0 10px 10px;
+    background: url(../img/pricBg.gif) no-repeat left center;
+    width: 520px;
+    position: relative;
+    left: -10px;
+}
+
+.oldPrice, .newPrice, .sale
+{
+    padding-top: 11px;
+    font-size: 12px;
+    line-height: 1;
+    color: #666;
+}
+
+.newPriceBox
+{
+    margin-top: 10px;
+    height: 26px;
+    line-height: 26px;
+}
+
+p.newPrice
+{
+    padding-top: 0;
+    height: 30px;
+    line-height: 30px;
+}
+
+.newPrice strong
+{
+    color: #c40000;
+}
+
+.newPrice strong, .newPrice span
+{
+    height: 30px;
+    margin-right: 3px;
+}
+
+.rmbIcon
+{
+    font-size: 16px;
+    padding-left: 16px;
+}
+
+.priceBox span s
+{
+    padding-left: 16px;
+}
+
+.newPrice .price
+{
+    font-size: 24px;
+}
+
+#spPrice
+{
+    padding-top: 3px;
+    font-weight: 900;
+}
+
+.sale > span
+{
+    display: inline-block;
+    margin-right: 5px;
+    line-height: 30px;
+}
+
+span.redBox
+{
+    background: #c40000;
+    color: #fff;
+    line-height: 18px;
+    padding: 2px 2px 1px 2px;
+}
+
+.sale span span
+{ /*! margin-bottom:5px; */
+    display: inline-block;
+}
+
+a.red
+{
+    color: #c40000;
+}
+
+span.red
+{
+    color: #c40000;
+    max-width: 400px;
+}
+
+.red a
+{
+    color: #c40000;
+}
+
+.transTo
+{
+    margin-top: 10px;
+    height: 25px;
+    line-height: 25px;
+    clear: both;
+    font-size: 12px;
+}
+
+    .transTo .psz, .transTo .at
+    {
+        float: left;
+        font-family: "微软雅黑";
+        margin-right: 10px;
+    }
+
+.at
+{
+    position: relative;
+}
+
+.at_btn
+{
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 5px;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+.transTo .yh
+{
+    font-size: 12px;
+    font-family: "微软雅黑";
+    margin-right: 8px;
+    color: #747474;
+}
+
+.transTo img
+{
+    padding-top: 7px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.suit
+{
+    margin-top: 10px;
+    height: 25px;
+    line-height: 25px;
+    clear: both;
+    font-size: 12px;
+}
+
+    .suit .tz
+    {
+        float: left;
+        font-family: "微软雅黑";
+        margin-right: 15px;
+    }
+
+    .suit .tznum
+    {
+        display: inline-block;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        background: #fff;
+        border: 1px solid #ccc;
+        margin-right: 12px;
+        cursor: pointer;
+    }
+
+    .suit .tzselect
+    {
+        border: 2px solid #c40000;
+        position: relative;
+        margin-top: -1px;
+        /*   box-shadow: 1px 1px 2px #888888;
+    -ms-box-shadow: 1px 1px 2px #888888;
+	-moz-box-shadow: 1px 1px 2px #888888;
+	-webkit-box-shadow: 1px 1px 2px #888888;
+	-o-box-shadow: 1px 1px 2px #888888;*/
+    }
+
+        .suit .tzselect::after
+        {
+            position: absolute;
+            right: -2px;
+            bottom: -2px;
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: url(../img/gou.png)no-repeat;
+        }
+
+.pay
+{
+    margin-top: 17px;
+    height: 36px;
+    line-height: 36px;
+    border-top: 1px dashed #c9c9c9;
+    border-bottom: 1px dashed #c9c9c9;
+    color: #B4B4B4;
+    font-size: 12px;
+    font-family: "微软雅黑";
+}
+
+    .pay p
+    {
+        width: 170px;
+        float: left;
+        text-align: center;
+    }
+
+        .pay p a
+        {
+            color: #c40000;
+            font-weight: 900;
+        }
+
+        .pay p em
+        {
+            color: #c40000;
+            font-weight: 900;
+        }
+
+        .pay p span
+        {
+            font-weight: 900;
+            color: #228800;
+        }
+
+    .pay .line
+    {
+        margin-top: 13px;
+        height: 12px;
+        width: 1px;
+        background: #ddd;
+        display: inline-block;
+        float: left;
+    }
+
+.guanlbox
+{
+    margin-top: 10px;
+    color: #666;
+    padding-bottom: 2px;
+    font-size: 13px;
+    line-height: 28px;
+}
+
+    .guanlbox .lttext
+    {
+        float: left;
+        font-family: "微软雅黑";
+        margin-right: 15px;
+        font-size: 12px;
+    }
+
+    .guanlbox .rtbox
+    {
+        width: 448px;
+    }
+
+        .guanlbox .rtbox ul
+        {
+            width: 100%;
+            overflow: hidden;
+        }
+
+.rtbox li
+{
+    float: left;
+    margin: 0px 5px 5px 0;
+    overflow: hidden;
+    max-width: 210px;
+    min-width:192px;
+    position: relative;
+}
+
+    .rtbox li a
+    {
+        display: block;
+        max-width: 180px;
+        line-height: 30px;
+        padding-right: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border: 1px solid #c9c9c9;
+        white-space: nowrap;
+        color: #666666;
+        font-family: "微软雅黑";
+        padding-top: 1px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+
+        .rtbox li a:hover
+        {
+            border: 1px solid #C40000;
+            color: #C40000;
+        }
+
+
+        .rtbox li a.select
+        {
+            border: 1px solid #C40000;
+            color: #C40000;
+            /*	box-shadow: 1px 1px 2px #888888;
+	-ms-box-shadow: 1px 1px 2px #888888;
+	-moz-box-shadow: 1px 1px 2px #888888;
+	-webkit-box-shadow: 1px 1px 2px #888888;
+	-o-box-shadow: 1px 1px 2px #888888;*/
+        }
+
+            .rtbox li a.select::after
+            {
+                position: absolute;
+                right: 0px;
+                bottom: 0px;
+                content: '';
+                width: 10px;
+                height: 10px;
+                background: url(../img/gou.png)no-repeat;
+            }
+
+        .rtbox li a img
+        {
+            vertical-align: top;
+            margin-right:10px;
+        }
+
+.numbox
+{
+    margin-top: 15px;
+}
+
+    .numbox .lttext
+    {
+        float: left;
+        font-family: "微软雅黑";
+        margin-right: 15px;
+        font-size: 12px;
+        line-height: 30px;
+    }
+
+.nums
+{
+    float: left;
+    width: 36px;
+    height: 28px;
+    border: 1px solid #c9c9c9;
+    text-align: center;
+    line-height: 28px;
+}
+
+.addBtn
+{
+    float: left;
+    margin-left: 4px;
+}
+
+    .addBtn span
+    {
+        display: block;
+        width: 18px;
+        height: 12px;
+        border: 1px solid #c9c9c9;
+        text-align: center;
+        line-height: 10px;
+        cursor: pointer;
+    }
+
+.diffN
+{
+    margin-top: 2px;
+}
+
+.numbox > span
+{
+    color: #FF7F7F;
+    font-size: 12px;
+    line-height: 30px;
+    margin-left: 8px;
+}
+
+
+.addToCart
+{
+    float: left;
+    cursor: pointer;
+    background: url(../img/Detail_bg.gif) no-repeat -586px -460px;
+    margin-left: 8px;
+    display: block;
+    margin-top: 20px;
+    width: 180px;
+    height: 40px;
+}
+
+.scbtn
+{
+    display: block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    float: right;
+    color: #666666;
+    font-size: 15px;
+    position: relative;
+}
+
+#scno
+{
+    display: none;
+}
+
+.scbtn img
+{
+    vertical-align: top;
+    margin-top: 10px;
+}
+
+.btnbox
+{
+    position: relative;
+    height: 60px;
+}
+
+.scnotemsg
+{
+    width: 160px;
+    position: absolute;
+    left: -50px;
+    top: 36px;
+    font-size: 12px;
+    padding: 4px 10px;
+    background: #FFFBF7;
+    border-radius: 2px;
+    display: none;
+    border: 1px solid #CCCCCC;
+}
+
+    .scnotemsg a
+    {
+        color: #29BFD6;
+    }
+
+.arrow
+{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 80px;
+    bottom: 6px;
+    /* overflow: hidden; */
+}
+
+    .arrow *
+    {
+        display: block;
+        position: absolute;
+        font-size: 20px;
+        line-height: 40px;
+        width: 20px;
+        font-family: SimSun;
+        font-style: normal;
+        font-weight: normal;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .arrow em
+    {
+        color: #CCCCCC;
+        top: -19px;
+    }
+
+    .arrow span
+    {
+        color: #FFFBF7;
+        top: -18px;
+    }
+
+.promptBox
+{
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+.infoWrap .infoItems
+{
+    float: left;
+    width: 587px;
+    line-height: 30px;
+}
+
+.infoItems .infoTit
+{
+    float: left;
+    width: 36px;
+    color: #666;
+    padding-right: 28px;
+}
+
+.infoItems .infoCon
+{
+    float: left;
+    width: 425px;
+}
+
+
+.clearfix::after
+{
+    clear: both;
+    display: block;
+    content: "...";
+    visibility: hidden;
+    height: 0;
+    font-size: 0;
+}
+
+.promptBox .infoPrompt li
+{
+    float: left;
+    color: #999;
+    margin-right: 25px;
+    *+display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+}
+
+    .promptBox .infoPrompt li.noCoupons i
+    {
+        background-position: -211px -38px;
+    }
+
+.dIcon
+{
+    background: url(/product/20161021/img/d-icon.png) no-repeat 0 0;
+}
+
+.promptBox .infoPrompt li.noCOD i
+{
+    background-position: -211px -21px;
+}
+
+.promptBox .infoPrompt li i
+{
+    background-position: -211px -21px;
+    width: 13px;
+    height: 12px;
+    margin-right: 5px;
+}
+
+.promptBox .infoPrompt li *
+{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.everybodyBuy
+{
+    width: 1200px;
+    color: #666666;
+    height: auto;
+    margin: 0 auto;
+    background: #FFFFFF;
+}
+
+.everybodyTit
+{
+    width: 1080px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 100px;
+    height: 80px;
+}
+
+.eveitem
+{
+    width: 1080px;
+    margin: 0 auto;
+}
+
+    .eveitem li
+    {
+        width: 256px;
+        height: 130px;
+        border: 1px solid #EFEFEF;
+        margin-right: 10px;
+        float: left;
+        font-size: 13px;
+    }
+
+        .eveitem li:last-child
+        {
+            margin-right: 0;
+        }
+
+        .eveitem li img
+        {
+            width: 125px;
+            height: 130px;
+            float: left;
+        }
+
+        .eveitem li span
+        {
+            padding-top: 40px;
+            display: inline-block;
+            float: left;
+            color: #666666;
+            width: 120px;
+            padding-left: 10px;
+        }
+
+        .eveitem li em
+        {
+            color: #DC3334;
+            padding-left: 10px;
+        }
+
+.itemdetail
+{
+    width: 1200px;
+    margin: 0 auto;
+    background: #FFFFFF;
+}
+
+.detailtit
+{
+    width: 1080px;
+    margin: 0 auto;
+    height: 100px;
+    border-bottom: 2px solid #EEEEEE;
+}
+
+    .detailtit span
+    {
+        color: #797979;
+        overflow: hidden;
+        padding: 0 25px;
+        height: 100px;
+        display: inline-block;
+        height: 100px;
+        line-height: 150px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+        .detailtit span a
+        {
+            color: #797979;
+            display: inline-block;
+        }
+
+        .detailtit span.select
+        {
+            color: #333333;
+            border-bottom: 2px solid #DC3334;
+        }
+
+        .detailtit span a em
+        {
+            color: #FA4343;
+            font-size: 15px;
+        }
+
+.itemsepc
+{
+    padding-left: 35px;
+    padding-top: 35px;
+    width: 1045px;
+    margin: 0 auto;
+    background: #FBFBFB;
+    padding-bottom: 35px;
+}
+
+    .itemsepc em
+    {
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 2px;
+        margin-right: 3px;
+    }
+
+    .itemsepc span
+    {
+        width: 24%;
+        display: inline-block;
+        font-size: 12px;
+        color: #666666;
+        margin-bottom: 8px;
+    }
+
+    .itemsepc .cd em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 0 0;
+    }
+
+    .itemsepc .jc em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 45px 0;
+    }
+
+    .itemsepc .jhl em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 30px 0;
+    }
+
+    .itemsepc .jjd em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 30px 15px;
+    }
+
+    .itemsepc .ds em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 30px 15px;
+    }
+
+    .itemsepc .lb em
+    {
+        background: url(../img/lb.png);
+        background-position: 30px 15px;
+    }
+
+    .itemsepc .std em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 0 15px;
+    }
+
+    .itemsepc .xx em
+    {
+        background: url(../img/fonticon.png);
+        background-position: -15px -15px;
+    }
+
+    .itemsepc .gg em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 0 15px;
+    }
+
+    .itemsepc .sz em
+    {
+        background: url(../img/fonticon.png);
+        background-position: -45px -15px;
+    }
+
+    .itemsepc .xg em
+    {
+        background: url(../img/fonticon.png);
+        background-position: -45px 0;
+    }
+
+    .itemsepc .zl em
+    {
+        background: url(../img/fonticon.png);
+        background-position: -45px 0;
+    }
+
+    .itemsepc .dw em
+    {
+        background: url(../img/fonticon.png);
+        background-position: -45px 0;
+    }
+
+    .itemsepc .rq em
+    {
+        background: url(../img/fonticon.png);
+        background-position: -45px 0;
+    }
+
+    .itemsepc .rj em
+    {
+        background: url(../img/fonticon.png);
+        background-position: -45px 0;
+    }
+
+    .itemsepc .bz em
+    {
+        background: url(../img/fonticon.png);
+        background-position: -45px 0;
+    }
+
+    .itemsepc .nf em
+    {
+        background: url(../img/fonticon.png);
+        background-position: -45px 0;
+    }
+
+    .itemsepc .scsj em
+    {
+        background: url(../img/fonticon.png);
+        background-position: -45px 0;
+    }
+
+    .itemsepc .cg em
+    {
+        background: url(../img/fonticon.png);
+        background-position: -45px 0;
+    }
+
+    .itemsepc .jg em
+    {
+        background: url(../img/fonticon.png);
+        background-position: -45px 0;
+    }
+
+    .itemsepc .cz em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 45px 0;
+    }
+
+    .itemsepc .cm em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 45px 0;
+    }
+
+    .itemsepc .ccff em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 45px 0;
+    }
+
+    .itemsepc .xgrd em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 45px 0;
+    }
+
+    .itemsepc .kgfl em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 45px 0;
+    }
+
+    .itemsepc .pz em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 45px 0;
+    }
+
+    .itemsepc .kg em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 45px 0;
+    }
+
+    .itemsepc .dj em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 45px 0;
+    }
+
+    .itemsepc .jyxjsj em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 45px 0;
+    }
+
+    .itemsepc .sych em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 45px 0;
+    }
+
+    .itemsepc .dpcy em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 45px 0;
+    }
+
+    .itemsepc .bzq em
+    {
+        background: url(../img/fonticon.png);
+        background-position: 45px 0;
+    }
+
+    .itemsepc .pp em
+    {
+        background: url(../img/brand.png);
+        /*background-position: 45px 0;*/
+    }
+
+    .itemsepc .spbh em
+    {
+        background: url(../img/number.png);
+        /*background-position: 45px 0;*/
+    }
+
+    .itemsepc .bzcz em
+    {
+        background: url(../img/fonticon.png);
+        background-position: -45px 0;
+    }
+
+.itemdetail img
+{
+    margin: 0 auto;
+    display: block;
+}
+
+.pro_detail_pic img
+{
+    background: url(http://www.gjw.com/image/product_detail_bg.jpg) no-repeat;
+    width: 450px;
+    height: 445px;
+    padding: 72px 200px 105px 100px;
+}
+
+.historylook
+{
+    width: 1200px;
+    color: #666666;
+    height: auto;
+    margin: 0 auto;
+    background: #FFFFFF;
+    position: relative;
+}
+
+.historylookTit
+{
+    width: 1080px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 100px;
+    height: 80px;
+}
+
+.historyitem
+{
+    width: 1080px;
+    margin: 0 auto;
+}
+
+    .historyitem li div
+    {
+        width: 260px;
+        height: 130px;
+        border: 1px solid #EFEFEF;
+        margin-right: 10px;
+        float: left;
+        font-size: 13px;
+        float: left;
+    }
+
+        .historyitem li div:last-child
+        {
+            margin-right: 0;
+        }
+
+    .historyitem li img
+    {
+        width: 125px;
+        height: 130px;
+        float: left;
+    }
+
+    .historyitem li span
+    {
+        padding-top: 40px;
+        display: inline-block;
+        float: left;
+        color: #666666;
+        width: 120px;
+        padding-left: 10px;
+        height: 51px;
+        overflow: hidden;
+    }
+
+    .historyitem li em
+    {
+        color: #DC3334;
+        padding-left: 10px;
+    }
+
+.historyslied
+{
+    width: 1080px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.historylook .prev
+{
+    position: absolute;
+    cursor: pointer;
+    left: 10px;
+    top: 58%;
+    font-size: 35px;
+    font-weight: 900;
+    color: #E3E3E3;
+}
+
+.historylook .next
+{
+    position: absolute;
+    cursor: pointer;
+    right: 10px;
+    top: 58%;
+    font-size: 35px;
+    font-weight: 900;
+    color: #E3E3E3;
+}
+
+.itempjbox
+{
+    width: 1200px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    padding-top: 30px;
+}
+
+.pjtitlebox
+{
+    width: 998px;
+    height: 98px;
+    border: 1px solid #E5E5E5;
+    margin: 0 auto;
+    padding: 25px 40px;
+}
+
+.pjbfbtbox
+{
+    width: 229px;
+    border-right: 1px solid #E5E5E5;
+    height: 100%;
+    line-height: 34px;
+}
+
+    .pjbfbtbox .sppj
+    {
+        color: #333333;
+        font-size: 14px;
+    }
+
+    .pjbfbtbox .emptybox
+    {
+        width: 100px;
+        height: 8px;
+        background: #CCCCCC;
+        display: inline-block;
+    }
+
+        .pjbfbtbox .emptybox .fillline
+        {
+            width: 98%;
+            height: 100%;
+            background: #DB3437;
+        }
+
+    .pjbfbtbox .hpbfb
+    {
+        color: #DC3334;
+        font-size: 13px;
+    }
+
+        .pjbfbtbox .hpbfb em
+        {
+            font-size: 17px;
+            padding-left: 20px;
+            padding-right: 5px;
+        }
+
+    .pjbfbtbox .pjnum
+    {
+        color: #999999;
+        font-size: 13px;
+    }
+
+.bqbox
+{
+    width: 514px;
+    border-right: 1px solid #E5E5E5;
+    height: 100%;
+    line-height: 34px;
+    padding-left: 45px;
+}
+
+    .bqbox .djrw
+    {
+        color: #333333;
+        font-size: 14px;
+    }
+
+    .bqbox .nobqnote
+    {
+        color: #999999;
+        font-size: 13px;
+    }
+
+.pjrule
+{
+    height: 100%;
+    line-height: 34px;
+    padding-left: 40px;
+    position: relative;
+}
+
+.rulebox
+{
+    position: absolute;
+    top: 120px;
+    right: 97px;
+    width: 567px;
+    height: 300px;
+    border: 1px solid #CCCCCC;
+    background: #FFFFFF;
+    display: none;
+    border-radius: 5px;
+    z-index: 999;
+    box-shadow: 5px 5px 5px #A9A9A9;
+    padding-bottom: 20px;
+}
+
+    .rulebox::after
+    {
+        content: url(../img/sj2.jpg);
+        color: #ccc;
+        width: 23px;
+        height: 20px;
+        font-size: 40px;
+        position: absolute;
+        top: -33px;
+        left: 90%;
+        z-index: -8;
+    }
+
+    .rulebox ul li em
+    {
+        color: #F5A623;
+        font-weight: 900;
+        font-size: 14px;
+    }
+
+    .rulebox ul li
+    {
+        width: 500px;
+        color: #333840;
+        word-wrap: break-word;
+        font-size: 12px;
+        line-height: 15px;
+        margin-top: 27px;
+        margin-left: 28px;
+    }
+
+        .rulebox ul li p:last-child
+        {
+            padding-left: 20px;
+        }
+
+.hover
+{
+    display: block;
+}
+
+
+
+.pjrule .sdnote
+{
+    color: #999999;
+    font-size: 13px;
+}
+
+.pjrule a
+{
+    color: #1376CE;
+    font-size: 12px;
+}
+
+.pjsel
+{
+    width: 1080px;
+    height: 46px;
+    margin: 0 auto;
+    border-bottom: 1px solid #E5E5E5;
+    margin-top: 20px;
+}
+
+    .pjsel span
+    {
+        width: 150px;
+        height: 100%;
+        text-align: center;
+        line-height: 43px;
+        color: #333333;
+        font-size: 12px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .pjsel em
+    {
+        color: #999999;
+    }
+
+    .pjsel span.select
+    {
+        border-left: 1px solid #E5E5E5;
+        border-right: 1px solid #E5E5E5;
+        border-top: 2px solid #DB3437;
+    }
+
+.pjxdbox
+{
+    width: 990px;
+    height: auto;
+    margin: 0 auto;
+}
+
+    .pjxdbox .listtitle
+    {
+        background: #F5F5F5;
+        padding-left: 30px;
+        height: 40px;
+        line-height: 40px;
+        margin-top: 20px;
+        font-size: 12px;
+        color: #666666;
+        display: inline-block;
+        width: 960px;
+    }
+
+.listtitle span:first-child
+{
+    margin-right: 630px;
+}
+
+.listtitle span:last-child
+{
+    margin-left: 170px;
+}
+
+.pjlistbox > li
+{
+    padding-left: 30px;
+    padding-top: 35px;
+    width: 960px;
+    height: auto;
+    border-left: 1px solid #E5E5E5;
+    border-right: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+    font-size: 12px;
+}
+
+.pjlistnr .pjnr
+{
+    width: 640px;
+    display: inline-block;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.pjlistnr img
+{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.pjlistnr > span:last-child
+{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 130px;
+}
+
+.pjlistnr span span:first-child
+{
+    color: #D9154B;
+}
+
+.pjlistnr span span:last-child
+{
+    color: #999999;
+}
+
+.pjimglist li
+{
+    float: left;
+    border: 1px solid #FFFFFF;
+    width: 82px;
+    height: 82px;
+    margin-right: 10px;
+    padding: 1px;
+    margin-bottom: 30px;
+}
+
+    .pjimglist li.select
+    {
+        border: 1px solid #E13B3A;
+        position: relative;
+        border-radius: 2px;
+    }
+
+        .pjimglist li.select::after
+        {
+            content: "▼";
+            position: absolute;
+            bottom: -12px;
+            left: 36px;
+            color: #E13B3A;
+        }
+
+    .pjimglist li div
+    {
+        display: table-cell;
+        width: 80px;
+        height: 80px;
+        border: 1px solid #CCCCCC;
+        text-align: center;
+        vertical-align: middle;
+        cursor: url(../img/big.cur),auto;
+    }
+
+    .pjimglist li img
+    {
+        max-width: 80px;
+        max-height: 80px;
+        vertical-align: middle;
+    }
+
+.showpicbox
+{
+    width: 500px;
+    height: 300px;
+    position: relative;
+    padding-bottom: 20px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+    .showpicbox img
+    {
+        max-width: 100%;
+        max-height: 100%;
+        vertical-align: middle;
+        cursor: url(../img/small.cur),auto;
+    }
+
+.prev
+{
+    position: absolute;
+    cursor: pointer;
+    left: 0;
+    top: 45%;
+    color: #E13B3A;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.next
+{
+    position: absolute;
+    cursor: pointer;
+    right: 0;
+    top: 45%;
+    color: #E13B3A;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.faqbox
+{
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+    background: #FFFFFF;
+    overflow: hidden;
+}
+
+.faq
+{
+    width: 1080px;
+    margin: 0 auto;
+    margin-top: 50px;
+    font-family: Arial,Verdana;
+    line-height: 25px;
+}
+
+    .faq .faqtitle
+    {
+        font-weight: 900;
+        font-size: 30px;
+        font-family: Arial,Verdana;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+
+    .faq .question
+    {
+        font-size: 17px;
+        color: #1A1A1A;
+        vertical-align: top;
+    }
+
+    .faq .Qicon
+    {
+        background: #DC3434;
+        color: #FFFFFF;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        line-height: 25px;
+        font-weight: 900;
+        font-family: Arial,Verdana;
+        margin-right: 30px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .faq .answer
+    {
+        display: inline-block;
+        width: 900px;
+        margin-top: 10px;
+        font-size: 15px;
+        color: #747474;
+        vertical-align: top;
+    }
+
+    .faq .Aicon
+    {
+        background: #77AFD2;
+        color: #FFFFFF;
+        width: 25px;
+        margin-top: 12px;
+        height: 25px;
+        text-align: center;
+        line-height: 25px;
+        font-weight: 900;
+        font-family: Arial,Verdana;
+        margin-right: 30px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+.zxkfbtn
+{
+    width: 88px;
+    height: 20px;
+    display: inline-block;
+    background: url(../img/zxkf.png);
+}
+
+.xftopnav
+{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #FFFFFF;
+    height: 48px;
+    border: 1px solid #C8C8C8;
+    font-size: 13px;
+    z-index: 999999;
+    display: none;
+    box-shadow: 5px 5px 10px RGBA(42, 42, 42, 0.29);
+}
+
+.xfnav
+{
+    width: 1200px;
+    margin: 0 auto;
+    padding-left: 25px;
+}
+
+    .xfnav span
+    {
+        line-height: 48px;
+        color: #484848;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+        .xfnav span.select
+        {
+            color: #E73736;
+            border-bottom: 2px solid #E73736;
+            height: 47px;
+        }
+
+        .xfnav span a
+        {
+            color: #484848;
+            display: inline-block;
+        }
+
+        .xfnav span.select a
+        {
+            color: #E73736;
+        }
+
+        .xfnav span > em
+        {
+            color: #E73736;
+            padding-right: 23px;
+        }
+
+        .xfnav span > a > em
+        {
+            color: #E73736;
+        }
+
+    .xfnav > em
+    {
+        color: #999999;
+        font-size: 12px;
+        text-decoration: line-through;
+        margin-right: 35px;
+    }
+
+    .xfnav .twxqnav
+    {
+        margin-right: 50px;
+    }
+
+    .xfnav .jypjnav
+    {
+        margin-right: 640px;
+    }
+
+        .xfnav .jypjnav a
+        {
+            color: #484848;
+        }
+
+    .xfnav .addshopcar
+    {
+        background: #E73736;
+        color: #FFFFFF;
+        display: inline-block;
+        height: 48px;
+        line-height: 48px;
+        padding: 0 20px;
+    }
+
+    .xfnav span:last-child
+    {
+        width: 80px;
+        height: 48px;
+        vertical-align: top;
+        position: relative;
+        float: right;
+    }
+
+        .xfnav span:last-child img
+        {
+            margin-top: 12px;
+            margin-left: 20px;
+        }
+
+    .xfnav .numicon
+    {
+        position: absolute;
+        background: #E73736;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        font-size: 12px;
+        top: 3px;
+        left: 34px;
+        text-align: center;
+        color: #FFFFFF;
+        line-height: 18px;
+    }
+
+.faq span
+{
+    font-family: "微软雅黑";
+}
+
+.zoomImg
+{
+    z-index: 99;
+    cursor: url(../img/big.cur),auto;
+}
+
+.addrArea
+{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 28px;
+    padding: 10px 0px 10px 10px;
+    width: 390px;
+    background: #fff;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    z-index: 9;
+}
+
+.noprobox
+{
+    height: 40px;
+    margin-top: 20px;
+    float: left;
+    display: none;
+}
+
+.noPro
+{
+    width: 180px;
+    height: 40px;
+    float: left;
+    background: url(../img/Detail_bg.gif) no-repeat -586px -412px;
+}
+
+#paykey_new
+{
+    background-color: #FFFCEB;
+    border: 1px solid #FFE2A6;
+    color: #666666;
+    display: block;
+    margin-top: 10px;
+}
+
+.sellingBox
+{
+    display: block;
+    width: 520px;
+    height: 40px;
+    background: #d8243a;
+    line-height: 40px;
+    color: #FFFFFF;
+    margin-top: 8px;
+}
+
+    .sellingBox h3
+    {
+        display: inline;
+        font-size: 24px;
+        font-family: 微软雅黑;
+        font-style: oblique;
+        font-weight: bold;
+        margin: 0px 0px 0px 71px;
+    }
+
+    .sellingBox span
+    {
+        margin-left: 11px;
+        position: relative;
+        top: -4px;
+        font: 12px/150% Arial,Verdana,"\5b8b\4f53";
+    }
+
+        .sellingBox span em
+        {
+            color: #ffcc00;
+        }
+
+.lq-note
+{
+    height: 20px;
+}
+
+.lq-text
+{
+    line-height: 15px;
+    float: left;
+    padding-right: 10px;
+    font-family: simsun;
+}
+
+.lq-note .yhq
+{
+    position: relative;
+    float: left;
+    height: 16px;
+    padding-left: 2px;
+    line-height: 15px;
+    text-align: center;
+    border-top: 1px solid #df3033;
+    border-bottom: 1px solid #df3033;
+    background: #ffdedf;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-right: 13px;
+    cursor: pointer;
+}
+
+    .lq-note .yhq s
+    {
+        left: 0;
+        background-position: -2px 0;
+        position: absolute;
+        top: -1px;
+        display: block;
+        height: 18px;
+        width: 2px;
+        overflow: hidden;
+        background: url(quan-arr.gif) no-repeat;
+    }
+
+    .lq-note .yhq b
+    {
+        right: -2px;
+        position: absolute;
+        top: -1px;
+        display: block;
+        height: 18px;
+        width: 2px;
+        overflow: hidden;
+        background: url(http://static.gjw.com/product/20161021/img/quan-arr.gif) no-repeat;
+    }
+
+    .lq-note .yhq .text
+    {
+        padding: 0 10px;
+        color: #df3033;
+        font-size: 12px;
+    }
+
+.picdetai > p
+{
+    width: 1000px;
+    font-size: 12px;
+    font-family: 宋体;
+    color: #666;
+    line-height: 20px;
+    margin: 20px auto;
+}
+
+.picdetai table
+{
+    margin: 0 auto;
+}
+
+.tishi
+{
+    margin-top: 15px;
+    background: url(../img/bg.gif) repeat-x;
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+    vertical-align: middle;
+    padding-left: 50px;
+}
+
+.rec
+{
+    float: left;
+    margin: 9px 7px 0 10px;
+    width: 8px;
+    height: 8px;
+    background: #c40000;
+}
+
+.tishiTit
+{
+    float: left;
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+}

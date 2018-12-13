@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{%load staticfiles%}
+{% block body %}
+<div id="logincon" style="margin-top:200px">
+    <div class="logincon_main">
+        <div class="register_box" style="height:1200px;">
+            <div class="tabForm fl" style="height:1200px;width:800px">
+                <div class="wrapform" style="margin-top:10px;height:1200px;width:800px">
+                    <div class="wrapformbox">
+                        <div class="form_box">
+                            <form method="post" action="{% url 'users:book_doUpdate' %}" class="formbox2 emailForm"
+                                  enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group" style="margin-left:-20px">
+                                    <label for="photoCover" class="col-sm-2 control-label">商品图片</label>
+                                    <div class="col-sm-8" id="picDiv">
+                                        <input id="photoCover" class="form-control"  style="height:30px;">
+                                        <input id="file" type="file" style="display:none" name="avatar" onchange="checkField(this.value,this.files)">
+                                        <a class="btn btn-primary" onclick="$('file').click();"
+                                           style="margin-left:220px;margin-top:-50px">Browse</a>
+
+                                    </div>
+
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="newImg" style="margin-left:-300px;margin-top:60px">上传图片</label>
+                                    <img id="newImg" src="/static/{{book.image}}" alt="pic" title="自定义背景"
+                                         style="margin-left:80px;width:200px;height:200px"/>
+                                </div>
+                                <script language="javascript" type="text/javascript">
+                                            function checkField(val,files) {
+                                                    x=document.getElementById("photoCover");
+                                                    x.value=val;
+                                                    fileFormat = val.substring(val.lastIndexOf(".")).toLowerCase(),
+                                                    src = window.URL.createObjectURL(files[0]); //转成可以在本地预览的格式
+                                                    if( !fileFormat.match(/.png|.jpg|.gif|.jpeg/) ) {
+                                                        error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg/gif');
+                                                        return;
+                                                    }
+                                                    p=document.getElementById("newImg");
+                                                    p.src=src;
+                                                }
+                                        </script>
+                                <div class="form_textbox form_sp" style="width:600px" >
+                                    <select name="type_id" id="type">
+                                        <option value="1">culture</option>
+                                        <option value="2">tech</option>
+                                        <option value="3">life</option>
+                                        <option value="4">child</option>
+                                        <option value="5">novel</option>
+                                    </select>
+                                    <script type="text/javascript">
+                                        function f(id){
+                                              m=$("type");
+                                              for(i=0;i<=m.options.length;i++)
+                                              {
+                                               if(parseInt(m.options[i].value)==parseInt(id))
+                                               {
+                                                m.options[i].selected=true;
+                                                break;
+                                               }
+                                              }
+                                         }
+                                        function $(id){
+                                             return document.getElementById(id);
+                                        }
+                                        var selectId={{ book.type_id }}
+                                        f(selectId);
+                                    </script>
+                                </div>
+                                <div class="form_textbox form_sp" style="width:600px">
+                                    <input required id="name" name="name" type="text"
+                                           value="{{ book.name }}">
+                                </div>
+                                <div class="form_textbox form_sp" style="width:600px" hidden>
+                                    <input required name="id" value="{{ book.id }}" hidden>
+                                </div>
+                                <span id="show2"></span>
+                                <div class="form_textbox form_sp" style="width:600px">
+                                    <input required id="desc" name="desc" type="text"
+                                           value="{{ book.desc }}">
+                                </div>
+                                <span id="show3"></span>
+                                <div class="form_textbox form_sp" style="width:600px">
+                                    <input required id="price" name="price" type="number"
+                                           value="{{ book.price }}">
+                                </div>
+                                <span id="show4"></span>
+                                <div class="form_textbox form_sp" style="width:600px">
+                                    <input required id="stock" name="stock" type="number"
+                                           value="{{ book.stock }}">
+                                </div>
+                                <span id="show5"></span>
+                                <div class="form_textbox form_sp" style="width:600px">
+                                    <select name="status" id="online">
+                                        <option value="1">online</option>
+                                        <option value="0">offline</option>
+                                    </select>
+                                    <script type="text/javascript">
+                                        function f(id){
+                                              m=$("online");
+                                              for(i=0;i<=m.options.length;i++)
+                                              {
+                                               if(parseInt(m.options[i].value)==parseInt(id))
+                                               {
+                                                m.options[i].selected=true;
+                                                break;
+                                               }
+                                              }
+                                         }
+                                        function $(id){
+                                             return document.getElementById(id);
+                                        }
+                                        var select={{ book.status }}
+                                        f(select);
+                                    </script>
+                                </div>
+                                <span id="show6"></span>
+                                <div class="form_textbox form_sp" style="margin-top:20px">
+                                    <textarea class="form-control" name="detail" id="detail" rows="20"
+                                              placeholder="请输入您的文章内容">{{book.detail|safe}}</textarea>
+                                    <script type="text/javascript"
+                                            src="{% static 'js/tinymce/tiny_mce.js' %}"></script>
+                                    <script type="text/javascript">
+                                        tinyMCE.init({
+                                            mode: "textareas",
+                                            theme: "advanced",
+                                            'width':600,
+                                            'height':400
+                                        });
+                                    </script>
+                                </div>
+                                {{msg}}
+                                <button id="button_2" type="submit" class="btnSubmit regBtn phoneReg"
+                                        style="margin-top:370px;margin-left:120px;">
+                                    修&nbsp;改
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="adBoxright fl">
+                <a href="#"><img src="/static/goods/img/register.jpg" alt=""></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

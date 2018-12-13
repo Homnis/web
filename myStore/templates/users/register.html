@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+{% block title%}用户注册{% endblock%}
+{% block body %}
+<script>
+		$(function () {
+		<!--普通注册的用户名验证-->
+            $("#username").blur(function () {
+                username = $(this).val()
+                parms = {csrfmiddlewaretoken:'{{ csrf_token }}',"username": username}
+                if ($.trim(username)==""){
+					$("#show").html("请填写手机号！")
+					$("#show").addClass("colred").removeClass("colgreen");
+                }else{
+					  $.ajax({
+						url : "/users/checktel/",
+						"type": "post",
+						data: parms,
+						success: function(data) {
+							if (data.success) {
+								$("#show").html("恭喜您，该手机号可用！")
+								$("#show").addClass("colgreen").removeClass("colred");
+
+							} else{
+								 $("#show").html("对不起，该手机号已存在，请重新填写")
+								 $("#show").addClass("colred").removeClass("colgreen");
+							}
+						}
+					})
+
+                }
+
+
+            });
+
+
+            	<!--邮箱注册的邮箱验证-->
+                $("#email").blur(function () {
+                username = $(this).val()
+                parms = {csrfmiddlewaretoken:'{{ csrf_token }}',"username": username}
+                if($.trim(username)==""){
+                	 $("#show3").html("请填写邮箱")
+                     $("#show3").addClass("colred").removeClass("colgreen");
+                }else{
+					$.ajax({
+						url : "/users/checkemail/",
+						"type": "post",
+						data: parms,
+						success: function(data) {
+							if (data.success) {
+								$("#show3").html("恭喜您，该邮箱名可用！")
+								$("#show3").addClass("colgreen").removeClass("colred");
+
+							} else{
+								 $("#show3").html("对不起，该邮箱已存在，请重新填写")
+								 $("#show3").addClass("colred").removeClass("colgreen");
+							}
+						}
+					})
+
+                }
+
+            });
+
+            <!--手机验证短信的发送-->
+            $("#get_code").click(function(){
+                alert(1)
+            	var $tel = $("#username").val()
+				if ($tel){
+				    $.ajax({
+						url: "/users/send_message",
+						type: "get",
+						data: {'mobile':$tel},
+						success: function(data){
+							if (data.success) {
+								$("#show5").html(data.msg)
+								$("#show5").addClass("colgreen").removeClass("colred")
+								$("#button_2").removeAttr("disabled");
+								}else{
+								$("#show5").html(data.msg)
+								$("#show5").addClass("colgreen").removeClass("colgreen");
+								$("#button_2").attr("disabled", True)
+								}
+						}
+					})
+
+				}else{
+					$("#show5").html("请输入手机号！")
+				};
+
+            });
+        })
+
+
+</script>
+<div id="logincon" style="margin-top:200px">
+    <div class="logincon_main">
+        <div class="register_box">
+            <div class="tabForm fl">
+                <ul class="tabFormBtn">
+                    <li>
+                        <a href="javascript:;" id="phone">
+                            <i class="mobile"></i>
+                            手机注册
+                        </a>
+                        <div class="actBd">
+                        </div>
+                    </li>
+                    <li>
+                        <a href="javascript:;" id="mail">
+                            <i class="mail"></i>
+                            邮箱注册
+                        </a>
+                        <div class="actBd">
+                        </div>
+                    </li>
+                </ul>
+                <div class="wrapform">
+                    <div class="wrapformbox" >
+                        <div class="form_box" style="display:None" id="phone_reg">
+                            <form action="{% url 'users:register' %}" method="post" class="formbox1 mobileForm">
+                                {% csrf_token %}
+                                <div class="form_textbox form_sp" style="margin-bottom:12px;">
+                                    <input id="username" name="phone" class="phone" type="text" placeholder="请输入手机号">
+                                </div>
+                                <span id="show"></span>
+                                <div class="form_textbox form_sp">
+                                    <input id="passwordA" name="passwordA" placeholder="请输入密码"
+                                           class="phonePwd" type="password">
+                                </div>
+                                <div class="form_textbox form_sp">
+                                    <input id="passwordA2" name="passwordA2" class="phonePwd" placeholder="请输入密码"
+                                           type="password">
+                                </div>
+                                <span id="show2"></span>
+                                <div class="form_textbox form_sp mgt12">
+                                    <label for="get_code">
+                                        校验码 :</label>
+                                    <a id="get_code" class="regCodeBtn btn">获取校验码</a>
+                                    <i class="mobileIcon"></i>
+                                    <input required id="valiCode" name="tel_code" class="codeText" type="text"
+                                           data-msg-number="请输入数字">
+                                </div>
+                                <span id="show5"></span>
+                                <p class="xieyi">
+                                    点击注册，表示您同意购酒网 <a class="blue" href="{% url 'users:agree' %}"
+                                                     target="_blank">《服务协议》</a></p>
+                                {{msg}}
+                                <button id="button_1" type="submit" class="btnSubmit regBtn phoneReg">
+                                    注&nbsp;册
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="form_box" id="mail_reg">
+                            <form method="post" action="{% url 'users:register_email' %}" class="formbox2 emailForm">
+                                {% csrf_token %}
+                                <div class="form_textbox form_sp">
+                                    <input required id="email" name="email" class="email" type="text"
+                                           placeholder="请输入邮箱">
+                                </div>
+                                <span id="show3"></span>
+                                <div class="form_textbox form_sp">
+                                    <input required id="passwordB" name="passwordB" data-id="密码"
+                                           placeholder="请输入密码" class="emlPwd" type="password">
+                                </div>
+                                <div class="form_textbox form_sp">
+                                    <input required id="passwordB2" name="passwordB2" data-id="密码" class="emlPwd"
+                                           type="password" placeholder="请输入密码">
+                                </div>
+                                <div class="form_textbox form_sp">
+                                    <input required id="tel" name="tel" class="text" type="text"
+                                           placeholder="请输入电话号码">
+                                </div>
+                                <span id="show4"></span>
+                                <p class="xieyi cl">
+                                    点击注册，表示您同意购酒网 <a class="blue" href="{% url 'users:agree' %}"
+                                                     target="_blank">《服务协议》</a></p>
+                                {{msg}}
+                                <button id="button_2" type="submit" class="btnSubmit regBtn phoneReg">
+                                    注&nbsp;册
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    var mail=document.getElementById("mail_reg");
+                    var phone=document.getElementById("phone_reg");
+                    $("#phone").click(function(){
+                        mail.style.display="none"
+                        phone.style.display="block"
+                    })
+                    $("#mail").click(function(){
+                        mail.style.display="block"
+                        phone.style.display="none"
+                    })
+
+                </script>
+
+            </div>
+            <div class="adBoxright fl">
+                <a href="#"><img src="/static/goods/img/register.jpg" alt=""></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

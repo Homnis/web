@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div id="logincon" style="margin-top:200px">
+    <div class="logincon_main">
+        <div class="register_box">
+            <div class="tabForm fl">
+                <div class="wrapform" style="margin-top:10px">
+                    <div class="wrapformbox">
+                        <div class="form_box">
+                            <form action="{% url 'users:regAddress'%}" method="post"
+                                  style="position:relative;left:40px;top:28px">
+                                {% csrf_token %}
+                                <select class="selectpicker" id="province" name="province">
+                                    {% for p in provinces %}
+                                    <option value="{{p.provinceid}}">{{p.province}}</option>
+                                    {% endfor %}
+                                </select>
+                                <script language="javascript" type="text/javascript">
+                                        $(document).ready(function() {
+                                            $("#province").change(function(){ 
+                                            var p=$('#province option:selected').val()
+                                            $.ajax({
+                                                url:"/getCity/",
+                                                data:{csrfmiddlewaretoken:'{{ csrf_token }}',"provinceid":p},
+                                                cache:"false",
+                                                async:"true",
+                                                type:"post",
+                                                success:function(data){
+                                                    var city_dict=data
+                                                    city_list=Object.keys(city_dict)
+                                                    var cityTag=document.getElementById("city");
+                                                    cityTag.options.length = 0;
+                                                    for (i=0;i<=city_list.length ;i++){
+                                                        cityTag.add(new Option(city_dict[city_list[i]],city_list[i]))
+                                                    }
+                                                    $('#city').selectpicker('refresh');
+                                                },
+                                                error:function(){
+                                                    alert("服务器端异常");
+                                                }
+                                            });
+                                        })
+                                        })
+
+                                </script>
+                                <br>
+                                <br>
+                                <br>
+                                <select style="position:relative;width:80px;left:10px" class="selectpicker"
+                                        id="city" name="city">
+                                </select>
+                                <script language="javascript" type="text/javascript">
+                                        $(document).ready(function() {
+                                            $("#city").change(function(){ 
+                                            var c=$('#city option:selected').val()
+                                            $.ajax({
+                                                url:"/getArea/",
+                                                data:{csrfmiddlewaretoken:'{{ csrf_token }}',"cityid":c},
+                                                cache:"false",
+                                                async:"true",
+                                                type:"post",
+                                                success:function(data){
+                                                    var area_dict=data
+                                                    area_list=Object.keys(area_dict)
+                                                    var areaTag=document.getElementById("area");
+                                                    areaTag.options.length = 0;
+                                                    for (i=0;i<=area_list.length ;i++){
+                                                        areaTag.add(new Option(area_dict[area_list[i]],area_list[i]))
+                                                    }
+                                                    $('#area').selectpicker('refresh');
+                                                },
+                                                error:function(){
+                                                    alert("服务器端异常");
+                                                }
+                                            });
+                                        })
+                                        })
+
+                                </script>
+                                <br>
+                                <br>
+                                <br>
+                                <div style="">
+                                    <select class="selectpicker" id="area" name="area">
+                                        {% for a in areas %}
+                                        <option value="{{a.areaid}}">{{a.area}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <textarea name="position" id="position" cols="33" rows="4"
+                                          style="position:relative;top:40px"></textarea>
+
+                            <button id="button_2" type="submit" class="btnSubmit regBtn phoneReg"
+                                    style="position:relative;top:80px">
+                                修&nbsp;改
+                            </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="adBoxright fl">
+                <a href="#"><img src="/static/goods/img/register.jpg" alt=""></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+Exception while resolving variable 'msg' in template 'blog/article_add.html'.
+Traceback (most recent call last):
+  File "H:\qiku\python\demo\webEnv\webenv\lib\site-packages\django\template\base.py", line 882, in _resolve_lookup
+    current = current[bit]
+  File "H:\qiku\python\demo\webEnv\webenv\lib\site-packages\django\template\context.py", line 87, in __getitem__
+    raise KeyError(key)
+KeyError: 'msg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\qiku\python\demo\webEnv\webenv\lib\site-packages\django\template\base.py", line 888, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(type(current), bit):
+AttributeError: type object 'RequestContext' has no attribute 'msg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\qiku\python\demo\webEnv\webenv\lib\site-packages\django\template\base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'msg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\qiku\python\demo\webEnv\webenv\lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [msg] in '[{\'True\': True, \'False\': False, \'None\': None}, {\'csrf_token\': <SimpleLazyObject: <function csrf.<locals>._get_val at 0x0000024F3A752400>>, \'request\': <WSGIRequest: GET \'/blog/article_add/\'>, \'user\': <SimpleLazyObject: <function AuthenticationMiddleware.process_request.<locals>.<lambda> at 0x0000024F3A601598>>, \'perms\': <django.contrib.auth.context_processors.PermWrapper object at 0x0000024F3A6D89B0>, \'messages\': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x0000024F3A6FA780>, \'DEFAULT_MESSAGE_LEVELS\': {\'DEBUG\': 10, \'INFO\': 20, \'SUCCESS\': 25, \'WARNING\': 30, \'ERROR\': 40}}, {}, {\'block\': <Block Node: content. Contents: [<TextNode: \'\\n<div class="col-md-9">\\n \'>, <Variable Node: msg>, <TextNode: \'</h4>\\n\\n            <!--<f\'>, <django.template.defaulttags.URLNode object at 0x0000024F3A6D8240>, <TextNode: \'" method="post">-->\\n     \'>, <django.template.defaulttags.CsrfTokenNode object at 0x0000024F3A6D8668>, <TextNode: \'\\n                <div cla\'>, <Variable Node: csrf_token>, <TextNode: \'" }, function (data) {\\n  \'>]>}]'
+"GET /blog/article_add/ HTTP/1.1" 200 9682

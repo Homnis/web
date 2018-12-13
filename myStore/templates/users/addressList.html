@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div id="logincon" style="margin-top:200px">
+    <div class="logincon_main">
+        <div class="register_box">
+            <div class="tabForm fl">
+                <div class="wrapform" style="margin-top:10px">
+                    <div class="wrapformbox">
+                        <div class="form_box " style="height:540px">
+                            <form action="{% url 'users:setAddress'%}" method="post"
+                                  style="position:relative;left:140px;top:-28px;height:540px;">
+                                {% csrf_token %}
+                                {% for a in address %}
+                                <div style="position:relative;left:-170px;width:450px;height:60px" class="panel panel-default">
+                                    <input type="radio" name="address_id" value="{{a.id}}" style="position:relative;top:20px;"/>
+                                    <div style="display:block;position:relative;top:-22px;left:50px;height:60px;width:400px">
+                                        <span style="margin-right:60px;font-size:17px;font-weight:700">省份：{{a.province}}</span>
+                                        <span style="font-size:17px;font-weight:700">城市：{{a.city}}</span>
+                                        <br>
+                                        <span style="position:relative;top:10px;margin-right:60px;font-size:17px;font-weight:700">辖区：{{a.area}}</span>
+                                        <span style="position:relative;top:10px;font-size:17px;font-weight:700">详细：{{a.desc}}</span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <input type=submit value="设为默认" style="position:relative;left:-60px;width:200px;height:50px;
+            cursor:pointer;background-color:#B22222;color:white">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="adBoxright fl">
+                <a href="#"><img src="/static/goods/img/register.jpg" alt=""></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

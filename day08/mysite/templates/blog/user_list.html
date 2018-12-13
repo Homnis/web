@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title%}用户列表{% endblock%}
+
+{% block content %}
+
+            <div class="col-md-9">
+                <div class="panel panel-primary">
+                  <div class="panel-heading">用户注册</div>
+                  <div class="panel-body">
+                      <table class="table table-hover table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <td>用户标识</td>
+                                <td>用户名称</td>
+                                <td>用户昵称</td>
+                                <td>用户性别</td>
+                                <td>用户邮箱</td>
+                                <td>用户年龄</td>
+                                <td>用户操作</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for u in users %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td><a href="{% url 'blog:user_info' u.id %}">{{u.username}}</a></td>
+                                <td><a href="{% url 'blog:user_info' u.id %}">{{u.nickname}}</a></td>
+                                <td>{{u.gender}}</td>
+                                <td>{{u.email}}</td>
+                                <td>{{u.age}}</td>
+                                <td>
+                                    <a class="btn btn-xs btn-primary" href="{% url 'blog:user_update' %}?id={{u.id}}">用户修改</a>
+                                    <a class="btn btn-xs btn-danger" onclick="return window.confirm('您确定要删除该用户吗？')" href="{% url 'blog:user_delete' u.id %}">用户删除</a>
+                                </td>
+                            </tr>
+
+                            {% empty %}
+                           <tr>
+                                <td colspan="7">对不起，目前没有用户， <a href="{% url 'blog:register' %}">请注册</a></td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

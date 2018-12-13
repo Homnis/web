@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'db_static/css/reg.css' %}">
+</head>
+<body>
+    <div id="reg">
+        <h1>Login</h1>
+        <form action="{% url 'db_static:doLogin' %}" method="post">
+            <input type="text" required="required" placeholder="用户名" name="name">
+            <input type="password" required="required" placeholder="密码" name="psw">
+            <button class="button_1" type="submit">登录</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'db_static/css/info.css' %}">
+</head>
+<body>
+<div id="info_div">
+    <table class="hovertable">
+        <caption>{{name}}</caption>
+        <tr onmouseover="this.style.backgroundColor='#ccccff';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+            <td>name:</td>
+            <td>{{name}}</td>
+        </tr>
+        <tr onmouseover="this.style.backgroundColor='#ccccff';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+            <td>age</td>
+            <td>{{age}}</td>
+        </tr>
+        <tr onmouseover="this.style.backgroundColor='#ccccff';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+            <td>gender</td>
+            <td>{{gender}}</td>
+        </tr>
+        <tr onmouseover="this.style.backgroundColor='#ccccff';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+            <td>address</td>
+            <td>{{address}}</td>
+        </tr>
+    </table>
+    <form action="{% url 'db_static:doDelete' %}" method='post'>
+        Are you sure to delete your account?
+        <br><button type='submit'>sure</button>
+    </form>
+</div>
+</body>
+</html>

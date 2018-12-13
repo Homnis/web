@@ -1,0 +1,441 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% block sty %}
+<head>
+    <meta charset="UTF-8">
+    <title>购物车-购酒网</title>
+    <link rel="stylesheet" href="{% static 'car/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'car/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'car/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'car/css/carts.css' %}">
+    <link rel="icon" href="http://www.gjw.com/favicon.ico" type="image/ico">
+    <script src="{% static 'car/js/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'car/js/addshopcart_aj2.js' %}"></script>
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+</head>
+{% endblock %}
+
+
+{% block title %}购物车{% endblock %}
+{% block body %}
+<div id="indexcon" style="width: 960px;">
+    <div class="cart_title" style="position:relative;left:-100px">
+        <h1 class="fl">
+            我的购物车</h1>
+        <div id="shipping_area_top" class="fl">
+            <b>单笔订单满100元免运费（香港、澳门、台湾、钓鱼岛地区和拆分订单除外）</b></div>
+    </div>
+    <!-- begin -->
+
+    <section class="cartMain" style="position:relative;left:-120px">
+        <div class="cartMain_hd">
+            <ul class="order_lists cartTop">
+                <li class="list_chk">
+                    <!--所有商品全选-->
+                    <input type="checkbox" id="all" class="whole_check">
+                    全选
+                </li>
+                <script>
+                     $("#all").on("click", function(){
+                        $("input[id^='checkbox']").prop("checked",true)
+                        if (this.checked){
+                            $("input[id^='checkbox']").attr("checked",true)
+                        }
+                        else {
+                            $("input[id^='checkbox']").attr("checked",false)
+                        }
+
+                    });
+
+
+                </script>
+                <li class="list_con">商品信息</li>
+                <li class="list_info">商品参数</li>
+                <li class="list_price">单价</li>
+                <li class="list_amount">数量</li>
+                <li class="list_sum">金额</li>
+                <li class="list_op">操作</li>
+            </ul>
+        </div>
+        <form action="#" method="get" name="sc_1" id="myform">
+            <div class="cartBox">
+
+                <div class="order_content">
+                    {% for sc in page.object_list %}
+                    <ul class="order_lists">
+                        <li class="list_chk">
+                            {# 每次点击都重新获得相应商品的总价格，存入price中，加到总价中 #}
+                            {# 如果点击后是未选中状态，将总价和数量减去此时的值 #}
+                            {# 点击加减时，调用old_value来获取原来的价格，用总价和数量减去此值 #}
+                            {# 点击加减后，再调用checkbox的onclick方法， #}
+                            <input name="s_id" type="checkbox" value="{{sc.id}}" id="checkbox_{{sc.id}}"
+                                   style="positive:relative;top:56px;">
+                        </li>
+                        <li class="list_con" style="position:relative;left:40px">
+                            {% if sc.books.image %}
+                            <div class="list_img"><a href="javascript:;"><img src="/static/{{sc.books.image}}"
+                                                                              alt=""></a></div>
+                            {% endif %}
+                            <div class="list_text"
+                                 style="position:relative;left:50px;top:20px;font-size:15px;font-weight:700"><a
+                                    href="javascript:;">{{sc.books.name}}</a></div>
+                        </li>
+                        <li class="list_info">
+                            <p>规格：默认</p>
+                            <p>尺寸：16*16*3(cm)</p>
+                        </li>
+                        <li class="list_price">
+                            <p class="price" id="price_{{sc.id}}">￥{{sc.books.price}}</p>
+                        </li>
+                        <li class="list_amount">
+                            <div class="amount_box">
+                                <a href="javascript:;" class="reduce reSty" id="reduce_{{sc.id}}">-</a>
+                                <input type="text" name="count_{{sc.id}}" value="{{sc.count}}" class="sum"
+                                       id="input_{{sc.id}}">
+                                <a href="javascript:;" class="plus" id="plus_{{sc.id}}">+</a>
+                            </div>
+                        </li>
+                        <script>
+                            $(function(){
+                                $("#checkbox_{{sc.id}}").on("click", function(){
+                                    if ($("#checkbox_{{sc.id}}").attr('checked')==undefined){
+                                        $number = parseInt($("#input_{{sc.id}}").val())
+                                        $price = {{sc.books.price}}*$number
+                                        $("#checkbox_{{sc.id}}").attr('price',$price);
+
+                                        $sum_num=parseInt($("#sum_num").text())
+                                        $sum_num=$sum_num + $number
+                                        $("#sum_num").text($sum_num)
+
+                                        $sum_price=parseInt($("#sum_price").text())
+                                        $sum_price=$sum_price+$price
+                                        $("#sum_price").text($sum_price)
+
+                                        $("#checkbox_{{sc.id}}").prop("checked",true)
+                                        $("#checkbox_{{sc.id}}").attr("checked",true)
+                                    }
+                                    else if ($("#checkbox_{{sc.id}}").attr('checked')=='checked'){
+                                        $("#checkbox_{{sc.id}}").removeAttr("checked")
+                                        $number = parseInt($("#input_{{sc.id}}").val())
+                                        $price = {{sc.books.price}}*$number
+                                        $("#checkbox_{{sc.id}}").attr('price',$price);
+
+                                        $sum_num=parseInt($("#sum_num").text())
+                                        $sum_num=$sum_num - $number
+                                        $("#sum_num").text($sum_num)
+
+                                        $sum_price=parseInt($("#sum_price").text())
+                                        $sum_price=$sum_price-$price
+                                        $("#sum_price").text($sum_price)
+                                    }
+                                });
+
+                                <!--数量增加-->
+                                $("#plus_{{sc.id}}").on("click", function(){
+                                    $number = $("#input_{{sc.id}}").val()
+                                    $number = parseInt($number) + 1
+                                    $("#input_{{sc.id}}").val($number)
+                                    $("#total_{{sc.id}}").text("￥"+$number*{{sc.books.price}})
+                                    if ($("#checkbox_{{sc.id}}").attr('checked')=='checked'){
+                                        $sum_num=parseInt($("#sum_num").text())
+                                        $sum_num=$sum_num + 1
+                                        $("#sum_num").text($sum_num)
+                                        $sum_price=parseInt($("#sum_price").text())
+                                        $sum_price=$sum_price+{{sc.books.price}}
+                                        $("#sum_price").text($sum_price)
+                                    }
+                                });
+
+
+                                <!--数量减少-->
+                                $("#reduce_{{sc.id}}").click(function(){
+                                    $number = $("#input_{{sc.id}}").val()
+                                    if ($number>0){
+                                        $number = parseInt($number) - 1
+                                        $("#total_{{sc.id}}").text("￥"+$number*{{sc.books.price}})
+                                        $("#input_{{sc.id}}").val($number)
+                                        if ($("#checkbox_{{sc.id}}").attr('checked')=='checked'){
+                                            $sum_num=$("#sum_num").text()
+                                            $sum_num=parseInt($sum_num) - 1
+                                            $("#sum_num").text($sum_num)
+                                            $sum_price=$("#sum_price").text()
+                                            $sum_price=parseInt($sum_price)
+                                            $sum_price=$sum_price-{{sc.books.price}}
+                                            $("#sum_price").text($sum_price)
+                                        }
+                                    }
+                                });
+
+
+                                <!--手动输入-->
+                                $("#input_{{sc.id}}").blur(function(){
+                                    $number = $(this).val()
+                                    if ( isNaN($number) || $number.trim().length == 0 || parseInt($number)<= 0   ){
+                                        $number = 1
+                                    }
+                                    $number = parseInt($number)
+                                    $("#input_{{sc.id}}").val($number)
+                                    $("#total_{{sc.id}}").text("￥"+$number*{{sc.books.price}})
+                                    if ($("#checkbox_{{sc.id}}").attr('checked')=='checked'){
+                                        $old_num = parseInt($("#input_{{sc.id}}").attr('oldvalue'))
+                                        $change_num=$number-$old_num
+                                        $sum_num=parseInt($("#sum_num").text())
+                                        $sum_num=$sum_num+$change_num
+                                        $("#sum_num").text($sum_num)
+                                        $sum_price=$("#sum_price").text()
+                                        $sum_price=parseInt($sum_price)
+                                        $sum_price=$sum_price+$change_num*{{sc.books.price}}
+                                        $("#sum_price").text($sum_price)
+                                    }
+                                });
+                                <!--进行输入之前的值-->
+                                $("#input_{{sc.id}}").focus(function(){
+                                    var old = $('#input_{{sc.id}}').val();
+                                    $("#input_{{sc.id}}").attr('oldvalue',old);
+                                });
+                            })
+
+
+                        </script>
+                        <li class="list_sum">
+                            <p class="sum_price" id="total_{{sc.id}}">￥{{sc.allTotal}}</p>
+                        </li>
+                        <li class="list_op">
+                            <p class="del"><a href="" id="{{sc.id}}" class="delBtn">移除商品</a></p>
+                            <script>
+                                $("#{{sc.id}}").click(function(){
+                                    $.ajax({
+                                        url : "/shoppingCar/delete/",
+                                        "type": "post",
+                                        cache:"false",
+                                        async:false,
+                                        data:{csrfmiddlewaretoken:'{{ csrf_token }}',"sc_id":{{sc.id}}},
+                                        success:function(data){
+                                            alert("success")
+                                        },
+                                        error:function(){
+                                            alert("服务器端异常");
+                                        }
+                                    })
+                                });
+
+
+                            </script>
+
+                        </li>
+                    </ul>
+                    {% empty %}
+
+                    <ul> 购物车空空如也~</ul>
+
+
+                    {% endfor %}
+
+                </div>
+
+
+                {% if page.object_list %}
+                <div class="pagenation">
+                    {% if page.has_previous %}
+                    <a href="/shoppingCar/list/?pageNow={{ page.previous_page_number }}">上一页</a>
+                    {% endif %}
+
+                    {% if num_pages > 1 %}
+                    {% for pindex in pages %}
+                    {% if pindex == page.number %}
+                    <a href="/shoppingCar/list/?pageNow={{ pindex }}" class="active">{{ pindex }}</a>
+                    {% else %}
+                    <a href="/shoppingCar/list/?pageNow={{ pindex }}">{{ pindex }}</a>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% if page.has_next %}
+                    <a href="/shoppingCar/list/?pageNow={{ page.next_page_number }}">下一页></a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+
+
+            <!--底部-->
+            <div class="bar-wrapper">
+                <div class="bar-right">
+                    <div class="piece">已选商品<span class="piece_num" id="sum_num">0</span>件</div>
+                    <div class="totalMoney">共计: <strong class="total_text" id="sum_price">0.00</strong></div>
+                    <div class="calBtn"><a href="/order/make_order/" id="go_confirm"
+                                           style="cursor:pointer;background-color:#B22222;">提交订单</a>
+                        <script>
+                        $("#go_confirm").click(function(){
+                            var idArray = {};
+                            $("input[id^='checkbox']").each(function(){
+                                if ($(this).attr("checked")=='checked'){
+                                    $num_id="#input_"+$(this).val()
+                                    $num=$($num_id.toString()).val()
+                                    idArray[$(this).val()]=$num
+                                }
+                            })
+                            $.ajax({
+                                url : "/shoppingCar/confirm/",
+                                "type": "post",
+                                headers:{"X-CSRFToken":$.cookie('csrftoken')},
+                                cache:"false",
+                                async:false,
+                                data:idArray,
+                            })
+                        });
+
+                        </script>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </section>
+    <section class="model_bg"></section>
+    <section class="my_model">
+        <p class="title">删除宝贝<span class="closeModel">X</span></p>
+        <p>您确认要删除该宝贝吗？</p>
+        <div class="opBtn"><a href="javascript:;" class="dialog-sure">确定</a><a href="javascript:;" class="dialog-close">关闭</a>
+        </div>
+    </section>
+    <!-- end -->
+    <dl class="trinket_box" style="position:absolute;top:1050px;left:352px;width:1200px">
+        <dt><span>你可能还需要</span></dt>
+        <dd>
+            <ul id="b1">
+                <li class="goods_pic"><a href="#">
+                    <img src="/static/goods/img/c1.jpg" height="100" width="100"></a>
+                </li>
+                <li class="goods_name"><a href="#">
+                    53度 茅台 飞天带杯（2016年产）500ml</a>&nbsp;&nbsp;<span class="cf04"></span>
+                </li>
+                <li class="goods_price">999</li>
+                <li class="goods_btn"><a id="addToCat2" class="fl cbtn putin_btn AddCart" href="#" index="2">
+                    加入购物车</a>
+                </li>
+            </ul>
+            <ul id="b2">
+                <li class="goods_pic"><a href="#" target="_blank" title="52度 五粮液 500ml">
+                    <img src="/static/goods/img/c2.jpg" height="100" width="100"></a>
+                </li>
+                <li class="goods_name"><a href="#" target="_blank" title="52度 五粮液 500ml">
+                    52度 五粮液 500ml</a>&nbsp;&nbsp;<span class="cf04"></span>
+                </li>
+                <li class="goods_price">728</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:;" index="14">
+                    加入购物车</a>
+                </li>
+            </ul>
+            <ul id="b3">
+                <li class="goods_pic"><a href="#">
+                    <img alt="52度 剑南春 500ml" src="/static/goods/img/c3.jpg" height="100" width="100"></a>
+                </li>
+                <li class="goods_name"><a href="#">
+                    52度 剑南春 500ml</a>&nbsp;&nbsp;<span class="cf04">限时特惠 欲购从速</span></li>
+                <li class="goods_price">358</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:;" index="35">
+                    加入购物车</a>
+                </li>
+            </ul>
+            <ul id="b4">
+                <li class="goods_pic"><a href="#">
+                    <img src="/static/goods/img/c4.jpg" height="100" width="100"></a>
+                </li>
+                <li class="goods_name"><a href="#" target="_blank" title="52度 五粮液 1618 500ml">
+                    52度 五粮液 1618 500ml</a>&nbsp;&nbsp;<span class="cf04"></span>
+                </li>
+                <li class="goods_price">728</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="16">
+                    加入购物车</a>
+                </li>
+            </ul>
+            <ul id="b5">
+                <li class="goods_pic"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    <img alt="53度 茅台 迎宾酒 500ml*6瓶" src="/static/goods/img/c5.jpg" height="100" width="100"></a></li>
+                <li class="goods_name"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    53度 茅台 迎宾酒 500ml*6瓶</a>&nbsp;&nbsp;<span class="cf04">下单立减100元 多买多减</span></li>
+                <li class="goods_price">420</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="4098">
+                    加入购物车</a></li>
+            </ul>
+            <ul id="b6">
+                <li class="goods_pic"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    <img alt="53度 茅台 迎宾酒 500ml*6瓶" src="/static/goods/img/c6.jpg" height="100" width="100"></a></li>
+                <li class="goods_name"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    53度 茅台 迎宾酒 500ml*6瓶</a>&nbsp;&nbsp;<span class="cf04">下单立减100元 多买多减</span></li>
+                <li class="goods_price">420</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="4098">
+                    加入购物车</a></li>
+            </ul>
+            <ul id="b7">
+                <li class="goods_pic"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    <img alt="53度 茅台 迎宾酒 500ml*6瓶" src="/static/goods/img/c7.jpg" height="100" width="100"></a></li>
+                <li class="goods_name"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    53度 茅台 迎宾酒 500ml*6瓶</a>&nbsp;&nbsp;<span class="cf04">下单立减100元 多买多减</span></li>
+                <li class="goods_price">420</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="4098">
+                    加入购物车</a></li>
+            </ul>
+            <ul id="b8">
+                <li class="goods_pic"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    <img alt="53度 茅台 迎宾酒 500ml*6瓶" src="/static/goods/img/c8.jpg" height="100" width="100"></a></li>
+                <li class="goods_name"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    53度 茅台 迎宾酒 500ml*6瓶</a>&nbsp;&nbsp;<span class="cf04">下单立减100元 多买多减</span></li>
+                <li class="goods_price">420</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="4098">
+                    加入购物车</a></li>
+            </ul>
+            <ul id="b9">
+                <li class="goods_pic"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    <img alt="53度 茅台 迎宾酒 500ml*6瓶" src="/static/goods/img/c9.jpg" height="100" width="100"></a></li>
+                <li class="goods_name"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    53度 茅台 迎宾酒 500ml*6瓶</a>&nbsp;&nbsp;<span class="cf04">下单立减100元 多买多减</span></li>
+                <li class="goods_price">420</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="4098">
+                    加入购物车</a></li>
+            </ul>
+            <ul id="b10">
+                <li class="goods_pic"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    <img alt="53度 茅台 迎宾酒 500ml*6瓶" src="/static/goods/img/c10.jpg" height="100" width="100"></a></li>
+                <li class="goods_name"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    53度 茅台 迎宾酒 500ml*6瓶</a>&nbsp;&nbsp;<span class="cf04">下单立减100元 多买多减</span></li>
+                <li class="goods_price">420</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="4098">
+                    加入购物车</a></li>
+            </ul>
+            <ul id="b11">
+                <li class="goods_pic"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    <img alt="53度 茅台 迎宾酒 500ml*6瓶" src="/static/goods/img/c11.jpg" height="100" width="100"></a></li>
+                <li class="goods_name"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    53度 茅台 迎宾酒 500ml*6瓶</a>&nbsp;&nbsp;<span class="cf04">下单立减100元 多买多减</span></li>
+                <li class="goods_price">420</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="4098">
+                    加入购物车</a></li>
+            </ul>
+            <ul id="b12">
+                <li class="goods_pic"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    <img alt="53度 茅台 迎宾酒 500ml*6瓶" src="/static/goods/img/c12.jpg" height="100" width="100"></a></li>
+                <li class="goods_name"><a href="#" target="_blank" title="53度 茅台 迎宾酒 500ml*6瓶">
+                    53度 茅台 迎宾酒 500ml*6瓶</a>&nbsp;&nbsp;<span class="cf04">下单立减100元 多买多减</span></li>
+                <li class="goods_price">420</li>
+                <li class="goods_btn"><a class="fl cbtn putin_btn AddCart" href="javascript:" index="4098">
+                    加入购物车</a></li>
+            </ul>
+
+        </dd>
+    </dl>
+
+</div>
+<div id="footer" style="position:relative;top:370px;">
+    <div class="footerbottom"
+         style="width: 960px;height:180px;background:#fafafa url(/static/goods/img/sanBao_07.gif) no-repeat left 20px; ">
+        <p>Copyright® 2009-2016 gjw.com, All Rights Reserved 上海线加下电子商务有限公司 版权所有</p>
+        <div class="authentication" style="padding-left:363px;">
+            <a href="javascript:;"></a>
+            <a href="javascript:;" class="fbright"></a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

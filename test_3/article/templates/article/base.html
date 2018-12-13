@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户博客---{% block title %}首页{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'article/js/lib/bootstrap-3.3.7-dist/css/bootstrap.css'%}">
+    <link rel="stylesheet" href="{% static 'article/css/common.css' %}">
+    <script src="{% static 'article/js/lib/jquery/jquery-1.12.4.js' %}"></script>
+    <script src="{% static 'article/js/lib/bootstrap-3.3.7-dist/js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/slide.js' %}"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+{% block nav %}
+<!--导航部分开始-->
+<nav class="navbar navbar-default navbar-inverse" id="top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'article:index' %}">项目首页面</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                {% if request.session.loginUser %}
+                <li class="active"><a href="#">欢迎你，<span
+                        style="color: red;">{{request.session.loginUser.nickname}} </span></a></li>
+                <li><a href="{% url 'article:user_list' %}">查看所有用户</a></li>
+                <li><a href="{% url 'article:logout' %}">退出登录</a></li>
+                {% else %}
+                <li class="active"><a href="{% url 'article:login'%}">登录</a></li>
+                <li><a href="{% url 'article:register' %}">注册</a></li>
+                {% endif %}
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="请输入您要搜索的关键字">
+                </div>
+                <button type="submit" class="btn btn-sm btn-default">搜索文章</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                {% if request.session.loginUser %}
+                <li><a href="#">{{request.session.loginUser.nickname}}</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">个人中心 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'article:user_info'%}">修改信息</a></li>
+                        <li><a href="{% url 'article:psw_update'%}">修改密码</a></li>
+                        <li><a href="{% url 'article:upload_avatar'%}">上传头像</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'article:article_add'%}">文章发表</a></li>
+                        <li><a href="{% url 'article:article_list'%}">文章管理</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'article:logout' %}">退出登录</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <li><a href="#">未登录用户</a></li>
+                {% endif %}
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+<!--导航部分结束-->
+
+<!--页面主体部分开始-->
+<div class="container">
+    {% block banner %}
+    <div class="page-header">
+        <div class="jumbotron" style="padding:0;width:1140px;">
+            <div id="myCarousel" class="carousel slide" style="width:1140px;">
+                <!-- 轮播（Carousel）指标 -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- 轮播（Carousel）项目 -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="{% static 'article/img/back.jpg' %}" alt="First slide">
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'article/img/guidao-009.jpg' %}" alt="Second slide">
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'article/img/guidao-008.jpg' %}" alt="Third slide">
+                    </div>
+                </div>
+                <!-- 轮播（Carousel）导航 -->
+                <a class="carousel-control left" href="#myCarousel"
+                   data-slide="prev"> <span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a>
+                <a class="carousel-control right" href="#myCarousel"
+                   data-slide="next"><span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+
+        </div>
+    </div>
+    {% endblock %}
+    <div class="row">
+        {% block left %}
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">用户信息</div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        {% if request.session.loginUser%}
+                        <li class="list-group-item">
+                            <img src="/{{request.session.loginUser.avatar}}" alt="用户头像"
+                                 class="img-circle avatar center-block ">
+                        </li>
+                        <li class="list-group-item">
+                            用户名称：{{request.session.loginUser.username }}
+                        </li>
+                        <li class="list-group-item">
+                            用户性别：{{request.session.loginUser.gender }}
+                        </li>
+                        <li class="list-group-item">
+                            用户昵称：{{request.session.loginUser.nickname }}
+                        </li>
+                        {% else %}
+                        <li class="list-group-item">
+                            <img src="{% static 'article/img/default.gif' %}" alt="用户头像" class="img-circle avatar">
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{% url 'article:login' %}">用户登录</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{% url 'article:register' %}">用户注册</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+
+        {% block content %}
+        <div class="col-md-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">内容部分</div>
+                <div class="panel-body">
+                    <h1>内容内</h1>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+
+    </div>
+
+
+</div>
+<!--页面主体部分结束-->
+
+<!--页面尾部开始-->
+{% block footer %}
+<div class="container">
+    <a href="#top" class="back-to-top" style="position:fixed;left:1600px;top:800px"> Back to top </a>
+</div>
+{% endblock %}
+<!--页面尾部结束-->
+
+</body>
+</html>

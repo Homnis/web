@@ -1,0 +1,86 @@
+﻿
+6、response cookie
+8、分页功能
+11、事务
+19、日志模块在Django中的使用
+12、全文检索
+13、后台管理系统--第三方xadmin
+18、类视图
+16、中间件
+
+14、celery
+15、电子邮件的收发
+
+17、Django rest framework
+20、版本管理工具--SVN和git及github
+21、项目分析及开发流程
+22、项目部署
+
+
+
+
+请求头对象---request	
+['COOKIES', 'FILES', 'GET', 'META', 'POST',  'content_type', 'csrf_processing_done', 'encoding', 'environ', 'get_full_pat
+h', 'get_host', 'get_port', 'get_raw_uri', 'get_signed_cookie', 'is_ajax', 'is_secure', 'method', 'parse_file_upload', 'path', 'path_info', 'read', 'rea
+dline', 'readlines', 'resolver_match', 'scheme', 'session'
+
+响应头对象---response
+['charset', 'close', 'closed', 'content', 'cookies', 'delete_cookie', 'flush', 'get', 'getvalue', 'has_header', 'items', 'make_bytes', 'readable',  'serialize
+', 'serialize_headers', 'set_cookie', 'set_signed_cookie', 'setdefault', 'status_code', 'streaming', 'tell', 'writable', 'write', 'writelines']
+
+会话跟踪技术
+	http或者https		无状态的
+
+早晨cookie的使用、回顾Django发起请求到页面被渲染到浏览器之上的过程
+
+session和cookie的区别：
+
+
+分页功能
+日志模块在Django中的使用
+事务
+类视图
+中间件
+后台管理系统--第三方xadmin
+全文检索
+17、Django rest framework
+20、版本管理工具--SVN和git及github
+21、项目分析及开发流程
+22、项目部署
+
+
+分页	将大量的数据分开展示	
+
+分页：
+	|-- 前端分页（近几年的技术）
+		数据量不太大的情况下，可以使用前端分页
+	|-- 后端分页（主流）
+		select * from blog where xxxx limit 1, 5
+
+
+
+select * from user limit 5;
+
+select * from user limit 0, 5;
+	|-- 当前第几页		pageNow		用户
+	|-- 每页显示的条数	pageSize	可以有用户或者程序员
+	|-- 总记录数		allCount	select count(*) from user;
+	|-- 总页数		pageCount	算出来的 math.ceil(allCount/pageSize)
+
+select * from user limit (pageNow-1)*pageSize, pagSize;
+
+日志	日志模板是软件必备的模块
+io自己可以写日志
+
+
+
+事务
+类视图
+中间件
+后台管理系统--第三方xadmin
+全文检索
+Django rest framework
+版本管理工具--SVN和git及github
+项目分析及开发流程
+
+

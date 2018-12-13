@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'db_static/css/reg.css' %}">
+</head>
+<body>
+    <div id="reg">
+        <h1>Login</h1>
+        <form action="{% url 'db_static:doChangePsw' %}" method="post">
+            <input type="password" required="required" placeholder="new password:" name="psw">
+            <input type="password" required="required" placeholder="please input it again:" name="psw_confirm">
+            <button class="button_1" type="submit">确定</button>
+        </form>
+    </div>
+</body>
+</html>

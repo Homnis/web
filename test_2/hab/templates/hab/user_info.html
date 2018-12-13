@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改页面</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'hab/css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'hab/js/bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+    <script src="{% static 'hab/js/jquery/jquery-1.12.4.js' %}"></script>
+    <script src="{% static 'hab/js/bootstrap-3.3.7-dist/js/bootstrap.js' %}"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<!--导航部分开始-->
+<nav class="navbar navbar-default navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/hab/index/">项目首页面</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                {% if request.session.loginUser %}
+                <li class="active"><a href="#">欢迎你，<span
+                        style="color: red;">{{request.session.loginUser.nickname}} </span>访问我们的系统</a></li>
+                {% else %}
+                <li class="active"><a href="/hab/login/">登录</a></li>
+                <li><a href="/hab/register/">注册</a></li>
+                {% endif %}
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="请输入您要搜索的关键字">
+                </div>
+                <button type="submit" class="btn btn-sm btn-default">搜索</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/hab/user_list/">用户列表</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">用户操作 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/hab/user_info/">个人中心</a></li>
+                        <li><a href="#">修改密码</a></li>
+                        <li><a href="#">用户头像</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/hab/logout/">退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--导航部分结束-->
+
+<!--页面主体部分开始-->
+<div class="container">
+    <div class="page-header">
+        <div class="jumbotron">
+            <h1>图片轮播</h1>
+            <p>第一张图片</p>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">用户信息</div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <img src="{% static 'hab/img/default.gif' %}" alt="用户头像"
+                                 class="img-circle avatar center-block">
+                        </li>
+                        {% if request.session.loginUser %}
+                        <li class="list-group-item">
+                            用户名称：{{request.session.loginUser.username}}
+                        </li>
+                        <li class="list-group-item">
+                            用户性别：{{request.session.loginUser.gender}}
+                        </li>
+                        <li class="list-group-item">
+                            用户昵称：{{request.session.loginUser.nickname}}
+                        </li>
+                        {% else %}
+                        <li class="list-group-item">
+                            用户名称：xxx
+                        </li>
+                        <li class="list-group-item">
+                            用户性别：男
+                        </li>
+                        <li class="list-group-item">
+                            用户昵称：xxxx
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-primary">
+            <div class="col-md-9">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">个人中心</div>
+                    <div class="panel-body">
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <td colspan="7" style="text-align:center;">用户信息</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if request.session.loginUser %}
+                            <tr>
+                                <td>用户名</td>
+                                <td>{{request.session.loginUser.username}}</td>
+                                <td rowspan="4" style="text-align:center;">
+                                    <!--<a class="btn btn-xs btn-primary" onclick="return window.confirm('您确定要修改吗？')"-->
+                                       <!--href="/hab/nickname/change/">修改</a>-->
+                                    <a class="btn btn-xs btn-primary" onclick="return window.confirm('您确定要修改吗？')"
+                                       href="/hab/user_update/">修改</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>昵称</td>
+                                <td>{{request.session.loginUser.nickname}}</td>
+
+                            </tr>
+                            <tr>
+                                <td>性别</td>
+                                <td>{{request.session.loginUser.gender}}</td>
+                            </tr>
+                            <tr>
+                                <td>邮箱</td>
+                                <td>{{request.session.loginUser.email}}</td>
+                            </tr>
+
+                            {% else %}
+                            <tr>
+                                <td colspan="7">对不起，目前没有用户， <a href="/hab/register/">请注册</a></td>
+                            </tr>
+                            {% endif %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!--页面主体部分结束-->
+
+        <!--页面尾部开始-->
+        <div class="container">
+            <ul class="list-inline">
+                <li><a href="#">友情链接1</a></li>
+                <li><a href="#">友情链接2</a></li>
+                <li><a href="#">友情链接3</a></li>
+                <li><a href="#">友情链接4</a></li>
+                <li><a href="#">友情链接5</a></li>
+                <li><a href="#">友情链接6</a></li>
+                <li><a href="#">友情链接7</a></li>
+            </ul>
+        </div>
+
+        <!--页面尾部结束-->
+
+</body>
+</html>

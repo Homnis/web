@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'db_static/css/info.css' %}">
+    <script src="{% static 'db_static/js/jquery-2.1.4.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'db_static/js/bootstrap.js' %}" type="text/javascript" charset="utf-8"></script>
+    <!--<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"/>-->
+</head>
+<body>
+<div id="info_div">
+    <table class="hovertable">
+        <caption>{{name}}</caption>
+        <tr onmouseover="this.style.backgroundColor='#ccccff';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+            <td>name:</td>
+            <td>{{name}}</td>
+        </tr>
+        <tr onmouseover="this.style.backgroundColor='#ccccff';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+            <td>age</td>
+            <td>{{age}}</td>
+        </tr>
+        <tr onmouseover="this.style.backgroundColor='#ccccff';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+            <td>gender</td>
+            <td>{{gender}}</td>
+        </tr>
+        <tr onmouseover="this.style.backgroundColor='#ccccff';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+            <td>address</td>
+            <td>{{address}}</td>
+        </tr>
+    </table>
+    <a class="active" href="{% url 'db_static:home' %}"><img src="{% static 'db_static/img/home.png' %}"></a>
+
+</div>
+</body>
+</html>

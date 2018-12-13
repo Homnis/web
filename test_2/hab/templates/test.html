@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {{content}}
+    <hr>
+    {% autoescape off %}
+    {{content}}
+    {% endautoescape %}
+    <hr>
+
+    {# {{content | safe }} #}
+
+    <hr>
+    {% comment %}
+
+    {% for u in users %}
+        {{u}}<br>
+    {% empty %}
+        没有用户
+    {% endfor %}
+    <hr>
+    {% if user.age >= 18 %}
+        你成年了，可以干些事了 <br>
+    {% elif user.age >= 28 %}
+        你还没有成年，赶紧回去找妈妈
+    {% endif %}
+
+    {% endcomment %}
+
+    <hr>
+    当前时间是：{% now 'Y-m-d H:i:s' %}
+    <hr>
+    <div>
+        {% widthratio 10 1 10 %}
+        {% widthratio 10 10 1 %}
+    </div>
+    <div>
+        {{ user.age | add:"20" }}
+        {{ user.age | add:"-20" }}
+    </div>
+
+        {{"刘建宏是个帅哥，这是大家公认的，没有问题的，没有毛病的" | truncatechars:9 }}
+</body>
+</html>

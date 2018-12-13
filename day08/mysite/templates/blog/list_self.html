@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title%}我的文章{% endblock%}
+{% block left %}{% endblock %}
+
+{% block content %}
+
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                  <div class="panel-heading">我的文章</div>
+                  <div class="panel-body">
+                      <table class="table table-hover table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <td>文章标识</td>
+                                <td>文章标题</td>
+                                <td>文章简介</td>
+                                <td>文章点击量</td>
+                                <td>文章操作</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          {#  {% for at in articles %} #}
+                          {% for at in request.session.loginUser.article_set.all %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td><a href="{% url 'blog:article_detail' at.id %}">{{at.title|truncatechars:20}}</a></td>
+                                <td>{{at.remark|truncatechars:30}}</td>
+                                <td> 0 </td>
+                                <td>
+                                    <a class="btn btn-xs btn-primary" href="{% url 'blog:article_update' at.id %}">文章修改</a>
+                                    <a class="btn btn-xs btn-danger" onclick="return window.confirm('您确定要删除该用户吗？')" href="{% url 'blog:article_delete' at.id %}">文章删除</a>
+                                </td>
+                            </tr>
+
+                            {% empty %}
+                           <tr>
+                                <td colspan="7">对不起，目前没有用户， <a href="{% url 'blog:article_add' %}">请发表文章</a></td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

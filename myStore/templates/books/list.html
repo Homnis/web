@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{%load staticfiles%}
+{% block sty %}
+<head>
+    <meta charset="UTF-8">
+    <title>购物车-购酒网</title>
+    <link rel="stylesheet" href="{% static 'car/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'car/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'car/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'car/css/carts.css' %}">
+    <link rel="icon" href="http://www.gjw.com/favicon.ico" type="image/ico">
+    <script src="{% static 'car/js/jquery-1.12.4.min.js' %}"></script>
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+    <link rel="stylesheet" href="{% static 'js/bootstrap-3.3.7-dist/css/bootstrap.css'%}">
+    <script src="{% static 'js/bootstrap-3.3.7-dist/js/bootstrap.js' %}"></script>
+</head>
+{% endblock %}
+{% block body %}
+
+<div id="logincon" style="margin-top:200px">
+    <div class="logincon_main">
+        <div class="register_box" style="height:1200px;">
+            <div class="tabForm fl" style="height:1200px;width:970px">
+                <div class="wrapform" style="margin-top:10px;height:1200px;width:970px">
+                    <div class="wrapformbox" style="width:970px">
+                        <div class="container" style="width:970px">
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>缩略图</th>
+                                    <th>商品名称</th>
+                                    <th>单价</th>
+                                    <th>销量</th>
+                                    <th>详细</th>
+                                </tr>
+                                {% for i in page.object_list %}
+                                <tbody>
+                                <tr>
+                                    <td style="width:150px;"><a href="{% url 'books:details' i.id %}"><img src="/static/{{ i.image }}" alt=""
+                                                                  style="width:100px;height:100px;"></a></td>
+                                    <td style="width:300px;font-size:22px">{{i.name}}</td>
+                                    <td style="width:300px;font-size:22px">{{i.price}}</td>
+                                    <td style="width:300px;font-size:22px">{{i.sales}}</td>
+                                    <td style="width:300px;font-size:22px">{{i.desc}}</td>
+                                </tr>
+                                </tbody>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% if page.object_list %}
+<ul class="pagination" style="position:relative;left:840px">
+    {% if page.has_previous %}
+    <li>
+        <a href="/list/?pageNow={{ page.previous_page_number }}">上一页</a></li>
+    {% endif %}
+
+    {% if num_pages > 1 %}
+    {% for pindex in pages %}
+    {% if pindex == page.number %}
+    <li class="active"><a href="/list/?pageNow={{ pindex }}">{{ pindex }}</a></li>
+    {% else %}
+    <li><a href="/list/?pageNow={{ pindex }}">{{ pindex }}</a></li>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% if page.has_next %}
+    <li><a href="/list/?pageNow={{ page.next_page_number }}">下一页></a></li>
+    {% endif %}
+</ul>
+{% endif %}
+{% endblock %}

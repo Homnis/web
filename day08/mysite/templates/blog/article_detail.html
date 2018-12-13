@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title%}文章详情{% endblock %}
+{% block left %}{% endblock %}
+
+
+{% block content%}
+<div class="col-md-12">
+    <div class="panel panel-primary">
+        <div class="panel-heading">文章详情</div>
+        <div class="panel-body">
+            <h1 class="text-center">{{ article.title }} </h1>
+            <h4 class="text-right">作者：{{article.author.nickname}}|
+                    发表时间：{{article.publishTime}}|
+                    修改时间：{{article.modifyTime}}
+            </h4>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                   {# {{article.content | safe }} #}
+                    {% autoescape off%}
+                        {{article.content}}
+                    {% endautoescape %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

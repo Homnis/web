@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'db_static/css/reg.css' %}">
+</head>
+<body>
+    <div id="reg">
+        <h1> Something wrong happened</h1>
+
+    </div>
+    <div id="time">
+        <h2><span id="sp">5</span>seconds later skip to change password page...</h2>
+            <script>
+                onload=function () {
+                    setInterval(go,1000)
+                };
+                var x=4;
+                function go() {
+
+                    if (x>=0){
+                        document.getElementById("sp").innerText=x;
+                    }else {
+                        location.href="{% url 'db_static:changePsw' %}";
+                    }
+                    x--;
+                }
+            </script>
+    </div>
+</body>
+</html>
