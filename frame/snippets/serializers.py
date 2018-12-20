@@ -14,7 +14,7 @@ class SnippetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Snippet
         fields = ('id', 'title', 'code', 'linenos', 'language', 'style')
-    def restore_object(self, attrs, instance=None):
+    def object1(self, attrs, instance=None):
         """
         创建或更新一个snippet实例, 返回该snippet实例
 

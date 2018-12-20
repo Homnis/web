@@ -8,6 +8,8 @@ from rest_framework.views import APIView
 from .serializers import SnippetSerializer
 from .models import Snippet
 
+from .tasks import add
+
 
 # Create your views here.
 class JSONResponse(HttpResponse):
@@ -21,17 +23,18 @@ class JSONResponse(HttpResponse):
         super(JSONResponse, self).__init__(content, **kwargs)
 
 
-
 class snippet_list(APIView):
     """
     展示所有存在的snippet, 或建立新的snippet
     """
-    def get(self,request):
+
+    def get(self, request):
         snippets = Snippet.objects.all()
         serializer = SnippetSerializer(snippets, many=True)
+        r = add.delay(2, 4)
         return JSONResponse(serializer.data)
 
-    def post(self,request):
+    def post(self, request):
         data = JSONParser().parse(request)
         serializer = SnippetSerializer(data=data)
         if serializer.is_valid():
